@@ -23,6 +23,558 @@ body{
 button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 button:focus-visible,a:focus-visible{outline:3px solid var(--brick);outline-offset:2px;border-radius:8px}
 
+/* ---------- student id ---------- */
+.id-card{
+  background:var(--card);border:2px solid var(--line);border-radius:14px;
+  padding:14px 16px;margin-bottom:14px;
+}
+.id-card .id-t{font-size:13px;color:var(--brick);margin-bottom:8px}
+.id-form{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.id-form select,.id-form input{
+  font:inherit;color:var(--ink);background:var(--bg);
+  border:2px solid var(--line);border-radius:10px;padding:8px 10px;font-size:15px;
+}
+.id-form input{flex:1;min-width:110px}
+.id-form select:focus,.id-form input:focus{outline:none;border-color:var(--brick)}
+.id-save{
+  background:var(--ink);color:#fff;border-radius:10px;padding:9px 16px;font-size:14.5px;
+}
+.id-done{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.id-done b{font-size:16px}
+.id-edit{
+  font-size:12.5px;color:var(--sub);border:1.5px solid var(--line);
+  border-radius:8px;padding:4px 10px;background:var(--card);margin-left:auto;
+}
+.id-warn{color:var(--no);font-size:13px;margin-top:6px}
+.id-line{
+  margin-top:6px;font-size:15.5px;color:var(--ink);
+  background:var(--brick-soft);border-radius:10px;padding:8px 14px;display:inline-block;
+}
+.id-line b{color:var(--brick)}
+.res-time{margin-top:6px;font-size:12.5px;color:var(--sub)}
+.topbar .who{font-size:12px;color:var(--brick);display:block}
+
+/* ---------- home ---------- */
+.home-head{text-align:center;margin-bottom:22px}
+.home-head h1{font-size:27px;letter-spacing:-0.5px;text-wrap:balance}
+.home-head .tag{
+  display:inline-block;margin-top:8px;font-size:13px;color:var(--brick);
+  background:var(--brick-soft);border-radius:999px;padding:3px 12px;
+}
+.home-head .sub{margin-top:8px;font-size:14px;color:var(--sub)}
+.week-list{display:flex;flex-direction:column;gap:10px}
+.week-card{
+  display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+  background:var(--card);border:2px solid var(--line);border-radius:14px;
+  padding:13px 16px;transition:border-color .15s, transform .1s;
+}
+.week-card:hover{border-color:var(--brick)}
+.week-card:active{transform:scale(.99)}
+.wnum{
+  flex:0 0 44px;height:44px;border-radius:10px;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:11px;color:var(--sub);line-height:1.15;
+}
+.wnum b{font-size:18px;color:var(--ink)}
+.wmain{flex:1;min-width:0}
+.wmain b{font-size:16.5px;display:block}
+.wmain span{display:block;font-size:12.5px;color:var(--sub);margin-top:2px}
+.wbadge{flex:0 0 auto;font-size:12px;color:var(--sub);text-align:right;line-height:1.3}
+.wbadge .done{color:var(--ok);font-weight:bold}
+.wbadge .star{color:var(--gold)}
+.foot{text-align:center;font-size:12px;color:var(--sub);margin-top:30px}
+
+/* ---------- quiz screen ---------- */
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.back-btn{
+  flex:0 0 auto;font-size:14px;color:var(--sub);padding:6px 10px;
+  border:2px solid var(--line);border-radius:10px;background:var(--card);
+}
+.back-btn:hover{color:var(--ink);border-color:var(--sub)}
+.topbar .t{flex:1;min-width:0}
+.topbar .t b{font-size:16px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .t span{font-size:12px;color:var(--sub)}
+
+/* brick wall progress: 10 bricks, 2 rows of 5 */
+.wall{
+  display:grid;grid-template-columns:repeat(10,1fr);gap:4px;
+  background:var(--card);border:2px solid var(--line);border-radius:12px;
+  padding:10px 12px;margin-bottom:16px;
+}
+.brick{
+  grid-column:span 2;height:16px;border-radius:4px;
+  background:var(--bg);border:1.5px solid var(--line);
+  transition:background .3s,border-color .3s;
+}
+.wall .r2{grid-column:span 2}
+.wall .half{grid-column:span 1}
+.brick.laid{background:var(--brick);border-color:var(--brick)}
+.brick.now{border-color:var(--brick);border-style:dashed}
+.wall-label{grid-column:1/-1;font-size:11.5px;color:var(--sub);text-align:center;padding-top:4px}
+
+.qcard{
+  background:var(--card);border:2px solid var(--line);border-radius:14px;
+  padding:20px 18px;
+}
+.lv-chip{
+  display:inline-block;font-size:12px;color:var(--brick);background:var(--brick-soft);
+  border-radius:999px;padding:2px 10px;margin-bottom:10px;
+}
+.qtext{font-size:18px;line-height:1.6;text-wrap:balance}
+.choices{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.choice{
+  display:flex;align-items:center;gap:11px;text-align:left;width:100%;
+  border:2px solid var(--line);border-radius:12px;background:var(--card);
+  padding:11px 13px;font-size:16px;transition:border-color .12s,background .12s;
+}
+.choice:hover:not(:disabled){border-color:var(--ink)}
+.choice:disabled{cursor:default}
+.cnum{
+  flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--sub);
+}
+.choice.picked-ok{border-color:var(--ok);background:var(--ok-soft)}
+.choice.picked-ok .cnum{border-color:var(--ok);background:var(--ok);color:#fff}
+.choice.picked-no{border-color:var(--no);background:var(--no-soft)}
+.choice.picked-no .cnum{border-color:var(--no);background:var(--no);color:#fff}
+.choice.reveal{border-color:var(--ok)}
+.choice.reveal .cnum{border-color:var(--ok);color:var(--ok)}
+.choice.dim{opacity:.55}
+
+.fb{border-radius:12px;padding:13px 15px;margin-top:14px;font-size:14.5px;line-height:1.6}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.no{background:var(--no-soft);color:var(--no)}
+.fb b{display:block;font-size:15.5px;margin-bottom:3px}
+.fb .exp{color:var(--ink)}
+.next-btn{
+  display:block;width:100%;margin-top:14px;padding:13px;
+  background:var(--ink);color:#fff;border-radius:12px;font-size:16px;
+  transition:opacity .12s;
+}
+.next-btn:hover{opacity:.9}
+
+/* ---------- result ---------- */
+.result{
+  background:var(--card);border:2px solid var(--line);border-radius:14px;
+  padding:28px 20px;text-align:center;
+}
+.result .big{font-size:44px;line-height:1.1}
+.result h2{font-size:21px;margin-top:10px;text-wrap:balance}
+.result .score{margin-top:6px;font-size:15px;color:var(--sub)}
+.result .score b{color:var(--brick);font-size:18px}
+.result .msg{margin-top:12px;font-size:14.5px;color:var(--ink)}
+.res-wall{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:16px}
+.res-wall .brick{width:34px;flex:none}
+.btn-row{display:flex;gap:9px;margin-top:20px}
+.btn-row button{
+  flex:1;padding:12px;border-radius:12px;font-size:15px;
+  border:2px solid var(--line);background:var(--card);
+}
+.btn-row .primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn-row button:hover{opacity:.9}
+
+.ai-box{
+  margin-top:18px;text-align:left;background:var(--bg);
+  border:2px dashed var(--line);border-radius:12px;padding:14px 15px;
+}
+.ai-box .ai-t{font-size:13px;color:var(--brick);margin-bottom:6px}
+.ai-box .ai-p{
+  font-size:13.5px;color:var(--ink);background:var(--card);
+  border-radius:8px;padding:9px 11px;line-height:1.55;
+}
+.ai-box .copy{
+  margin-top:8px;font-size:12.5px;color:var(--sub);
+  border:1.5px solid var(--line);border-radius:8px;padding:5px 11px;background:var(--card);
+}
+.ai-box .copy:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="app"></div>
+
+<script>
+const WEEKS=[
+/*W1*/{num:1,title:"수와 연산",sub:"오늘은 가볍게 — 이 앱과 친해지는 날",qs:[
+{q:"수직선에서 0을 출발해 오른쪽으로 5칸 간 자리의 수는 얼마입니까?",c:["+5","−5","0","+10"],a:1,e:"0보다 오른쪽은 양수(+)입니다. 오른쪽으로 5칸이므로 +5 입니다."},
+{q:"수직선에서 0을 출발해 왼쪽으로 3칸 간 자리의 수는 얼마입니까?",c:["+3","−3","0","+5"],a:2,e:"0보다 왼쪽은 음수(−)입니다. 왼쪽으로 3칸이므로 −3 입니다."},
+{q:"지하 2층, 영하 3도처럼 '0보다 아래'를 나타내는 수의 이름은 무엇입니까?",c:["분수","제곱수","음수","양수"],a:3,e:"0보다 작은 수가 음수(−)입니다. 지하층·영하 온도를 적을 때 씁니다."},
+{q:"4 + 3 을 수직선에서 계산하면 얼마입니까?",c:["1","12","−7","7"],a:4,e:"더하기는 오른쪽으로 걷기입니다. 4에서 오른쪽으로 3칸 가면 7 입니다."},
+{q:"3 − 5 를 수직선에서 계산하면 얼마입니까?",c:["−8","2","−2","8"],a:3,e:"빼기는 왼쪽으로 걷기입니다. 3에서 왼쪽으로 5칸 가면 0을 지나 −2 에 도착합니다."},
+{q:"−3 + 5 를 계산하면 얼마입니까?",c:["+8","−2","−8","+2"],a:4,e:"더하기는 오른쪽으로 걷기입니다. −3에서 오른쪽으로 5칸 가면 +2 입니다."},
+{q:"2 − 6 을 계산하면 얼마입니까?",c:["−4","4","−8","8"],a:1,e:"2에서 왼쪽으로 6칸 걸으면 0을 지나 −4 에 도착합니다."},
+{q:"(−4) × (−3) 을 계산하면 얼마입니까?",c:["12","7","−12","−7"],a:1,e:"부호가 같으면(−와 −) 답의 부호는 +입니다. 4×3=12 이므로 +12 입니다."},
+{q:"(−) ÷ (+) 의 부호는 무엇입니까?",c:["+","−","0","알 수 없다"],a:2,e:"나누기도 곱하기와 같은 부호 규칙입니다. 부호가 다르면 답은 − 입니다."},
+{q:"건물의 바닥선을 0으로 잡을 때, 바닥보다 2 m 아래로 판 터파기 깊이는 어떻게 적습니까?",c:["+2 m","−2 m","0 m","2 m²"],a:2,e:"바닥선(0)보다 아래쪽은 음수로 적습니다. 그래서 −2 m 입니다."}]},
+/*W2*/{num:2,title:"비와 비의 성질",sub:"두 수를 나란히 놓고 비교하는 법",qs:[
+{q:"빨강 3칸, 파랑 1칸을 색칠한 그림이 있습니다. '빨강 대 파랑'의 비는 무엇입니까?",c:["3 : 1","1 : 3","3 : 3","1 : 1"],a:1,e:"비는 앞의 양 : 뒤의 양 순서로 씁니다. 빨강 3, 파랑 1 이므로 3 : 1 입니다."},
+{q:"2 : 1 은 어떻게 읽습니까?",c:["2 나누기 1","2 대 1","2점1","1 대 2"],a:2,e:"기호 : 를 가운데 두고 '2 대 1' 이라고 읽습니다."},
+{q:"커피 2컵에 우유 3컵을 넣었습니다. '커피 대 우유'의 비는 무엇입니까?",c:["3 : 2","2 : 2","2 : 3","1 : 3"],a:3,e:"말의 순서대로 짝을 맞춥니다. 커피 : 우유 = 2 : 3 입니다."},
+{q:"빨강 물감 2컵과 파랑 물감 1컵을 섞었습니다. '빨강 대 파랑'의 비는 무엇입니까?",c:["3 : 1","1 : 2","2 : 1","2 : 2"],a:3,e:"비는 앞의 양 : 뒤의 양 순서로 씁니다. 빨강 2, 파랑 1 이므로 2 : 1 입니다."},
+{q:"다음 중 2 : 1 과 같은 비는 무엇입니까?",c:["3 : 1","2 : 3","1 : 2","4 : 2"],a:4,e:"앞·뒤 항에 같은 수(2)를 곱해도 비는 변하지 않습니다. 2:1 = 4:2 입니다."},
+{q:"비의 앞쪽 항과 뒤쪽 항에 똑같은 수를 곱하거나 나누면 비는 어떻게 됩니까?",c:["변하지 않는다","2배가 된다","절반이 된다","항상 1 : 1 이 된다"],a:1,e:"같은 수를 곱하거나 나눠도 비는 그대로입니다. (비의 성질) 2:1 = 4:2 = 6:3"},
+{q:"6 : 4 를 가장 간단한 비로 나타내면 무엇입니까?",c:["6 : 4","3 : 2","1 : 1","2 : 3"],a:2,e:"6과 4를 둘 다 나눌 수 있는 수 2로 나누면 3 : 2 입니다."},
+{q:"모래 12 : 시멘트 8 로 섞었습니다. 가장 간단한 비로 나타내면 무엇입니까?",c:["2 : 3","6 : 4","3 : 2","4 : 3"],a:3,e:"12와 8을 둘 다 나눌 수 있는 가장 큰 수 4로 나누면 3 : 2 입니다."},
+{q:"모래와 시멘트를 3 : 1 로 섞습니다. 모래를 6삽 넣으면 시멘트는 몇 삽입니까?",c:["1삽","2삽","3삽","6삽"],a:2,e:"3 : 1 의 앞·뒤에 같은 수 2를 곱하면 6 : 2 — 시멘트는 2삽입니다."},
+{q:"도면의 축척 1 : 100 은 무슨 뜻입니까?",c:["도면 1 이 실제 100 에 해당한다","실제 1 이 도면 100 에 해당한다","도면과 실제가 똑같다","도면 100 이 실제 1 에 해당한다"],a:1,e:"도면은 실제 건물을 같은 비로 줄여 그린 것입니다. 도면 1 : 실제 100 이라는 비입니다."}]},
+/*W3*/{num:3,title:"비율과 비례식",sub:"비교를 숫자 하나로, 식 하나로",qs:[
+{q:"비를 하나의 수(비율)로 바꾸려면 어떻게 계산합니까?",c:["앞의 수 ÷ 뒤의 수","앞의 수 × 뒤의 수","앞의 수 + 뒤의 수","앞의 수 − 뒤의 수"],a:1,e:"비율은 '앞 ÷ 뒤' 입니다. 비율값이 같으면 두 비는 같은 비입니다."},
+{q:"비 2 : 1 을 비율(앞 ÷ 뒤)로 나타내면 얼마입니까?",c:["3","0.5","1","2"],a:4,e:"비율은 앞의 수 ÷ 뒤의 수 입니다. 2 ÷ 1 = 2 입니다."},
+{q:"비 3 : 4 를 비율로 나타내면 얼마입니까?",c:["0.75","1.33","7","12"],a:1,e:"3 ÷ 4 = 0.75 입니다."},
+{q:"다음 중 6 : 4 와 같은 비는 무엇입니까?",c:["9 : 6","6 : 9","2 : 1","4 : 6"],a:1,e:"6÷4 = 1.5, 9÷6 = 1.5 로 비율이 같으므로 같은 비입니다."},
+{q:"비례식 a : b = c : d 에서 '안쪽 두 수(내항)'는 무엇입니까?",c:["a 와 d","b 와 c","a 와 b","c 와 d"],a:2,e:"가운데에 있는 b와 c가 안쪽 두 수(내항), 양 끝의 a와 d가 바깥쪽 두 수(외항)입니다."},
+{q:"비례식에서 모르는 수를 구할 때 쓰는 핵심 규칙은 무엇입니까?",c:["안쪽 합 = 바깥쪽 합","안쪽 곱 = 바깥쪽 곱","앞의 수 = 뒤의 수","안쪽 차 = 바깥쪽 차"],a:2,e:"비례식의 핵심 규칙은 '안쪽 곱 = 바깥쪽 곱' 하나입니다."},
+{q:"2 : 3 = □ : 12 에서 □ 는 얼마입니까?",c:["24","6","8","9"],a:3,e:"안쪽 곱 = 바깥쪽 곱 → 3 × □ = 2 × 12 = 24, □ = 24 ÷ 3 = 8 입니다."},
+{q:"2 : 3 = 8 : □ 에서 □ 는 얼마입니까?",c:["12","10","24","16"],a:1,e:"안쪽 곱 3 × 8 = 24 = 바깥쪽 곱 2 × □ → □ = 24 ÷ 2 = 12 입니다."},
+{q:"물 3컵에 쌀 2컵으로 밥을 짓습니다. 물 9컵이면 쌀은 몇 컵입니까?",c:["3컵","6컵","4컵","9컵"],a:2,e:"물 : 쌀 = 3 : 2 = 9 : □ → 안쪽 곱 2 × 9 = 18 = 3 × □, □ = 6컵 입니다."},
+{q:"벽돌 200장에 시멘트 3포가 필요합니다. 벽돌 600장이면 시멘트는 몇 포가 필요합니까?",c:["12포","18포","6포","9포"],a:4,e:"200 : 3 = 600 : □ → 200 × □ = 3 × 600 = 1800, □ = 1800 ÷ 200 = 9포 입니다."}]},
+/*W4*/{num:4,title:"분수의 계산",sub:"쪼개진 수를 더하고 빼고 곱하는 법",qs:[
+{q:"똑같이 4조각으로 나눈 것 중 1조각은 분수로 어떻게 씁니까?",c:["1/4","1/2","4/1","3/4"],a:1,e:"'4조각 중 1조각'이므로 1/4 입니다."},
+{q:"2/4 와 크기가 같은 분수는 무엇입니까?",c:["1/4","1/2","2/3","3/4"],a:2,e:"2/4 의 위·아래를 2로 나누면 1/2 — 색칠한 양이 똑같은 같은 분수입니다."},
+{q:"6/8 을 가장 간단한 분수로 약분하면 무엇입니까?",c:["3/4","2/3","1/2","4/6"],a:1,e:"위·아래를 같은 수 2로 나누면 6÷2 / 8÷2 = 3/4 입니다."},
+{q:"12/18 을 가장 간단한 분수로 약분하면 무엇입니까?",c:["6/9","2/3","3/4","4/6"],a:2,e:"÷2 하면 6/9, 다시 ÷3 하면 2/3 — 더 나눌 수 없으면 끝입니다."},
+{q:"1/3 과 1/4 을 더하기 위해 통분할 때, 두 분수의 분모를 얼마로 맞추면 됩니까?",c:["7","12","3","4"],a:2,e:"3과 4가 함께 들어가는 수는 12입니다. 1/3 = 4/12, 1/4 = 3/12 로 맞춥니다."},
+{q:"1/5 + 2/5 를 계산하면 얼마입니까?",c:["3/5","3/10","2/5","1/5"],a:1,e:"분모가 같으면 분자만 더합니다. (1+2)/5 = 3/5 입니다."},
+{q:"1/3 + 1/4 을 계산하면 얼마입니까?",c:["2/12","2/7","7/12","1/7"],a:3,e:"통분 후 분자만 더합니다. 4/12 + 3/12 = 7/12 입니다. (분모끼리 더하면 안 돼요!)"},
+{q:"3/4 − 1/4 을 계산하고 약분까지 하면 얼마입니까?",c:["1/4","3/8","2/8","1/2"],a:4,e:"분모가 같으니 분자만 뺍니다. (3−1)/4 = 2/4, 약분하면 1/2 입니다."},
+{q:"1/2 × 1/3 을 계산하면 얼마입니까?",c:["1/6","2/5","1/5","2/6"],a:1,e:"위는 위끼리(1×1=1), 아래는 아래끼리(2×3=6) 곱하면 1/6 입니다."},
+{q:"2/3 × 3/4 을 계산하고 약분까지 하면 얼마입니까?",c:["1/2","6/7","5/12","2/3"],a:1,e:"위는 위끼리(2×3=6), 아래는 아래끼리(3×4=12) 곱하면 6/12, 약분하면 1/2 입니다."}]},
+/*W5*/{num:5,title:"소수의 계산과 단위 변환",sub:"점 하나로 정확해지는 수",qs:[
+{q:"막대를 10칸으로 나누어 5칸을 색칠하면 소수로 얼마입니까?",c:["0.5","0.05","5","1.5"],a:1,e:"10칸 중 5칸 = 0.5 = 반(½) 입니다."},
+{q:"소수를 더하거나 뺄 때 가장 먼저 해야 할 일은 무엇입니까?",c:["반올림하기","점을 없애기","소수점을 세로로 맞추기","끝자리를 맞추기"],a:3,e:"같은 자리끼리만 더할 수 있으므로 소수점을 세로로 딱 맞춰 씁니다."},
+{q:"1.5 + 0.7 을 계산하면 얼마입니까?",c:["8.5","2.2","1.12","2.12"],a:2,e:"소수점을 세로로 맞춰 더하면 15+7=22 → 2.2 입니다."},
+{q:"2.3 − 0.8 을 계산하면 얼마입니까?",c:["1.5","1.6","3.1","2.5"],a:1,e:"소수점을 맞추고 자리끼리 빼면 2.3 − 0.8 = 1.5 입니다."},
+{q:"3.2 − 1.7 을 계산하면 얼마입니까?",c:["2.9","2.5","1.5","1.9"],a:3,e:"소수점을 맞추고 받아내림하여 빼면 3.2 − 1.7 = 1.5 입니다."},
+{q:"0.3 × 3 을 계산하면 얼마입니까?",c:["0.9","9","0.09","3.3"],a:1,e:"0.3 을 3번 더하는 것과 같습니다. 3×3=9 에 소수점 한 자리 → 0.9 입니다."},
+{q:"0.4 × 0.3 을 계산하면 얼마입니까?",c:["0.7","12","1.2","0.12"],a:4,e:"점을 빼고 4×3=12, 소수점 아래 자리 수 1+1=2자리 → 0.12 입니다."},
+{q:"1 m 는 몇 cm 입니까?",c:["10 cm","100 cm","1000 cm","50 cm"],a:2,e:"1 m = 100 cm 입니다. 큰 단위 → 작은 단위는 ×100 입니다."},
+{q:"150 cm 는 몇 m 입니까?",c:["1.5 m","0.15 m","1500 m","15 m"],a:1,e:"1 m = 100 cm 이므로 cm → m 는 ÷100 입니다. 150 ÷ 100 = 1.5 m"},
+{q:"2 m 50 cm 는 몇 m 입니까?",c:["250 m","2.5 m","25 m","2.05 m"],a:2,e:"50 cm = 0.5 m 이므로 2 + 0.5 = 2.5 m 입니다."}]},
+/*W6*/{num:6,title:"백분율",sub:"전체를 100으로 맞추면 한눈에 보인다",qs:[
+{q:"100칸 중 25칸을 색칠했습니다. 몇 % 입니까?",c:["25 %","2.5 %","75 %","0.25 %"],a:1,e:"백분율은 '100칸 중 몇 칸'입니다. 25칸이면 25 % 입니다."},
+{q:"100칸 중 30칸을 색칠했습니다. 몇 % 입니까?",c:["300 %","3 %","30 %","0.3 %"],a:3,e:"백분율은 '100칸 중 몇 칸'입니다. 30칸이면 30 % 입니다."},
+{q:"50 % 를 소수로 나타내면 얼마입니까?",c:["0.05","50","5","0.5"],a:4,e:"% 를 소수로 바꿀 때는 ÷100 합니다. 50 ÷ 100 = 0.5"},
+{q:"0.7 을 백분율(%)로 나타내면 얼마입니까?",c:["70 %","700 %","0.7 %","7 %"],a:1,e:"소수를 % 로 바꿀 때는 ×100 합니다. 0.7 × 100 = 70 %"},
+{q:"3 % 를 소수로 나타내면 얼마입니까?",c:["0.3","3.0","0.03","0.003"],a:3,e:"% ÷ 100 이므로 3 ÷ 100 = 0.03 입니다. (0.3 이 아니에요!)"},
+{q:"25 % 를 가장 간단한 분수로 나타내면 무엇입니까?",c:["1/2","1/4","1/5","3/4"],a:2,e:"25 % = 25/100, 약분하면 1/4 입니다."},
+{q:"1/2 은 몇 % 입니까?",c:["50 %","25 %","75 %","12 %"],a:1,e:"절반은 100칸 중 50칸이므로 50 % 입니다."},
+{q:"20,000원의 15 % 는 얼마입니까?",c:["3,000원","1,500원","300원","15,000원"],a:1,e:"15 % → 0.15, 20,000 × 0.15 = 3,000원 입니다."},
+{q:"벽돌 200장을 주문할 때 여유분 5 % 를 더 주문하려고 합니다. 여유분은 몇 장입니까?",c:["100장","5장","10장","20장"],a:3,e:"5 % → 0.05, 200 × 0.05 = 10장 입니다."},
+{q:"벽돌 200장에 여유분 5 % 를 더하면 모두 몇 장을 주문하게 됩니까?",c:["210장","205장","190장","300장"],a:1,e:"여유분 = 200 × 0.05 = 10장, 전체 = 200 + 10 = 210장 입니다."}]},
+/*W7*/{num:7,title:"정비례와 반비례",sub:"하나가 변하면 다른 하나는?",qs:[
+{q:"벽 넓이가 2배가 되면 페인트도 2배가 필요합니다. 두 양은 어떤 관계입니까?",c:["반비례","관계없음","비례식","정비례"],a:4,e:"한쪽이 2배가 될 때 다른 쪽도 2배 — 같은 방향으로 커지면 정비례입니다."},
+{q:"작업하는 사람 수가 2배가 되면 걸리는 날은 절반이 됩니다. 두 양은 어떤 관계입니까?",c:["반비례","둘 다","관계없음","정비례"],a:1,e:"한쪽이 커질 때 다른 쪽은 반대로 작아지면 반비례입니다."},
+{q:"정비례하는 두 양에서 항상 일정한 것은 무엇입니까?",c:["두 수의 나눗셈(비율)","두 수의 합","두 수의 차","두 수의 곱"],a:1,e:"정비례는 나눗셈(비율)이 일정합니다. (예: 페인트 ÷ 면적 = 항상 3)"},
+{q:"반비례하는 두 양에서 항상 일정한 것은 무엇입니까?",c:["두 수의 차","두 수의 곱","두 수의 나눗셈(비율)","두 수의 합"],a:2,e:"반비례는 곱이 일정합니다. (예: 1×12 = 2×6 = 3×4 = 12) 정비례는 나눗셈(비율)이 일정합니다."},
+{q:"벽돌 1줄에 6장씩 쌓습니다. 4줄이면 벽돌은 몇 장입니까?",c:["24장","10장","18장","12장"],a:1,e:"정비례: 6 × 4 = 24장 입니다. 줄이 늘어난 만큼 벽돌도 늘어납니다."},
+{q:"페인트 2통으로 6㎡ 를 칠할 수 있습니다. 5통이면 몇 ㎡ 를 칠할 수 있습니까?",c:["12㎡","15㎡","30㎡","10㎡"],a:2,e:"1통이 칠하는 넓이 = 6 ÷ 2 = 3㎡, 5통이면 3 × 5 = 15㎡ 입니다."},
+{q:"벽돌 3줄에 18장이 쓰입니다. 7줄이면 벽돌은 몇 장입니까?",c:["21장","36장","42장","54장"],a:3,e:"정비례: 1줄에 18 ÷ 3 = 6장, 7줄이면 6 × 7 = 42장 입니다."},
+{q:"넓이가 12로 정해진 직사각형에서 가로가 3이면 세로는 얼마입니까?",c:["4","6","3","9"],a:1,e:"가로 × 세로 = 12 (일정) 이므로 세로 = 12 ÷ 3 = 4 입니다. 반비례예요."},
+{q:"4명이 하면 6일 걸리는 일을 8명이 하면 며칠 걸립니까?",c:["2일","24일","12일","3일"],a:4,e:"반비례: 전체 일의 양 = 4 × 6 = 24, 8명이면 24 ÷ 8 = 3일 입니다."},
+{q:"3명이 하면 8일 걸리는 일을 6명이 하면 며칠 걸립니까?",c:["4일","2일","16일","6일"],a:1,e:"반비례: 전체 일의 양 = 3 × 8 = 24, 6명이면 24 ÷ 6 = 4일 입니다."}]},
+/*W9*/{num:9,title:"평면도형의 넓이와 둘레",sub:"도형을 숫자로 재는 법",qs:[
+{q:"도형의 테두리를 한 바퀴 돈 길이(둘레)의 단위로 알맞은 것은 무엇입니까?",c:["m","㎡","㎤","%"],a:1,e:"둘레는 '길이'라서 m, 넓이는 '칸 수'라서 ㎡ 를 씁니다."},
+{q:"가로 5 m, 세로 2 m 인 직사각형의 둘레는 얼마입니까?",c:["10 m","14 m","7 m","20 m"],a:2,e:"둘레 = 2 × (가로 + 세로) = 2 × (5 + 2) = 14 m 입니다."},
+{q:"가로 6 m, 세로 4 m 인 직사각형의 둘레는 얼마입니까?",c:["10 m","20 m","24 m","12 m"],a:2,e:"둘레 = 2 × (가로 + 세로) = 2 × (6 + 4) = 20 m 입니다."},
+{q:"가로 6 m, 세로 4 m 인 직사각형의 넓이는 얼마입니까?",c:["10 ㎡","20 ㎡","24 ㎡","12 ㎡"],a:3,e:"넓이 = 가로 × 세로 = 6 × 4 = 24 ㎡ 입니다. (넓이는 제곱 단위!)"},
+{q:"한 변이 3 m 인 정사각형의 넓이는 얼마입니까?",c:["9 ㎡","6 ㎡","12 ㎡","3 ㎡"],a:1,e:"정사각형 넓이 = 한 변 × 한 변 = 3 × 3 = 9 ㎡ 입니다."},
+{q:"삼각형의 넓이를 구하는 공식은 무엇입니까?",c:["밑변 × 높이","밑변 × 높이 ÷ 2","밑변 + 높이","밑변 × 높이 × 2"],a:2,e:"삼각형은 같은 밑변·높이 직사각형의 절반입니다. 밑변 × 높이 ÷ 2 — ÷2 를 빼먹지 않기!"},
+{q:"밑변 8, 높이 5 인 삼각형의 넓이는 얼마입니까?",c:["13","26","40","20"],a:4,e:"삼각형은 직사각형의 절반입니다. 8 × 5 ÷ 2 = 20 입니다. (÷2 잊지 않기!)"},
+{q:"원에서 지름은 반지름의 몇 배입니까?",c:["2배","3.14배","10배","절반"],a:1,e:"지름은 원을 가로지르는 길이로, 반지름 × 2 입니다."},
+{q:"지름이 10 인 원의 둘레는 얼마입니까? (원주율 3.14)",c:["31.4","314","15.7","78.5"],a:1,e:"원의 둘레 = 지름 × 3.14 = 10 × 3.14 = 31.4 입니다."},
+{q:"반지름이 2 인 원의 넓이는 얼마입니까? (원주율 3.14)",c:["6.28","12.56","4","3.14"],a:2,e:"원의 넓이 = 반지름 × 반지름 × 3.14 = 2 × 2 × 3.14 = 12.56 입니다."}]},
+/*W10*/{num:10,title:"각·삼각형·피타고라스",sub:"삼각형이 품은 규칙",qs:[
+{q:"딱 90° 인 각의 이름은 무엇입니까?",c:["직각","예각","둔각","평각"],a:1,e:"90° 가 직각입니다. 90°보다 작으면 예각, 크면 둔각입니다."},
+{q:"삼각형의 세 각을 모두 더하면 몇 도입니까?",c:["270°","90°","180°","360°"],a:3,e:"삼각형의 세 각을 펴서 한 줄로 이으면 곧은 직선(180°)이 됩니다."},
+{q:"삼각형의 두 각이 70°, 60° 일 때 나머지 한 각은 몇 도입니까?",c:["60°","130°","40°","50°"],a:4,e:"180 − (70 + 60) = 50° 입니다."},
+{q:"4² (4의 제곱) 은 얼마입니까?",c:["8","16","12","44"],a:2,e:"같은 수를 두 번 곱한 것이 제곱입니다. 4 × 4 = 16 — 한 변이 4인 정사각형의 넓이예요."},
+{q:"√25 는 얼마입니까?",c:["5","12.5","50","625"],a:1,e:"두 번 곱해서 25가 되는 수는 5 (5×5=25) 입니다. √는 넓이에서 한 변으로 되돌리는 기호입니다."},
+{q:"√9 는 얼마입니까?",c:["81","3","4.5","18"],a:2,e:"두 번 곱해서 9가 되는 수는 3 (3×3=9) 입니다."},
+{q:"직각삼각형에서 직각의 맞은편에 있는 가장 긴 변의 이름은 무엇입니까?",c:["높이","빗변","대각선","밑변"],a:2,e:"직각의 맞은편, 언제나 가장 긴 변이 빗변입니다."},
+{q:"피타고라스 정리를 바르게 쓴 것은 무엇입니까? (c는 빗변)",c:["a² + b² = c²","a + b = c","a × b = c","a² − b² = c²"],a:1,e:"직각을 낀 두 변의 제곱의 합 = 빗변의 제곱. a² + b² = c² 입니다."},
+{q:"직각을 낀 두 변이 6, 8 인 직각삼각형의 빗변은 얼마입니까?",c:["48","14","10","100"],a:3,e:"피타고라스: 6² + 8² = 36 + 64 = 100, 빗변 = √100 = 10 입니다."},
+{q:"직각을 낀 두 변이 5, 12 인 직각삼각형의 빗변은 얼마입니까?",c:["13","17","60","11"],a:1,e:"5² + 12² = 25 + 144 = 169, 빗변 = √169 = 13 입니다."}]},
+/*W11*/{num:11,title:"삼각비",sub:"빗변분의 높이 — 각과 변의 약속",qs:[
+{q:"각이 같은 두 직각삼각형은 크기가 달라도 변의 비가 어떻게 됩니까?",c:["2배가 된다","절반이 된다","달라진다","같다"],a:4,e:"같은 각이면 닮음이라 크기가 달라도 변의 비(높이÷빗변 등)는 항상 같습니다. 그래서 삼각비가 생깁니다."},
+{q:"높이 4, 빗변 8 인 직각삼각형에서 '높이 ÷ 빗변'은 얼마입니까?",c:["0.5","2","0.4","4"],a:1,e:"4 ÷ 8 = 0.5 입니다. 높이 6, 빗변 12 여도 0.5 — 각이 같으면 늘 같아요."},
+{q:"사인(sin)은 직각삼각형의 어떤 두 변의 비입니까?",c:["높이 ÷ 빗변","밑변 ÷ 빗변","높이 ÷ 밑변","빗변 ÷ 높이"],a:1,e:"sin = 높이 ÷ 빗변 ('빗변분의 높이') 입니다. 필기체 s 쓰는 순서로 기억하세요."},
+{q:"코사인(cos)은 직각삼각형의 어떤 두 변의 비입니까?",c:["높이 ÷ 빗변","밑변 ÷ 빗변","높이 ÷ 밑변","빗변 ÷ 밑변"],a:2,e:"cos = 밑변 ÷ 빗변 ('빗변분의 밑변') 입니다."},
+{q:"탄젠트(tan)는 직각삼각형의 어떤 두 변의 비입니까?",c:["높이 ÷ 빗변","밑변 ÷ 빗변","높이 ÷ 밑변","빗변 ÷ 높이"],a:3,e:"tan = 높이 ÷ 밑변 입니다. tan 에는 빗변을 쓰지 않아요."},
+{q:"높이 3, 밑변 4, 빗변 5 인 직각삼각형에서 sin 값은 얼마입니까?",c:["3/5","4/5","3/4","5/3"],a:1,e:"sin = 높이 ÷ 빗변 = 3/5 (= 0.6) 입니다."},
+{q:"높이 3, 밑변 4, 빗변 5 인 직각삼각형에서 cos 값은 얼마입니까?",c:["3/5","4/5","3/4","5/4"],a:2,e:"cos = 밑변 ÷ 빗변 = 4/5 (= 0.8) 입니다."},
+{q:"높이 3, 밑변 4, 빗변 5 인 직각삼각형에서 tan 값은 얼마입니까?",c:["3/5","4/5","3/4","4/3"],a:3,e:"tan = 높이 ÷ 밑변 = 3/4 (= 0.75) 입니다. tan 에는 빗변을 쓰지 않아요."},
+{q:"사다리(빗변) 길이가 10 m 이고 기준 각의 sin 값이 0.5 일 때, 사다리가 닿는 높이는 얼마입니까?",c:["20 m","0.05 m","10.5 m","5 m"],a:4,e:"높이 = 빗변 × sin = 10 × 0.5 = 5 m 입니다."},
+{q:"빗변 20 이고 기준 각의 cos 값이 0.8 일 때, 밑변은 얼마입니까?",c:["16","12","25","4"],a:1,e:"밑변 = 빗변 × cos = 20 × 0.8 = 16 입니다."}]},
+/*W12*/{num:12,title:"입체도형의 부피와 겉넓이",sub:"공간을 숫자로 재는 법",qs:[
+{q:"부피란 무엇을 센 것입니까?",c:["단위 정육면체를 채운 개수","칸을 덮은 개수","테두리의 길이","면의 개수"],a:1,e:"부피 = 1칸짜리 정육면체를 몇 개 채웠나 입니다. 넓이는 '덮은 수', 부피는 '채운 수'예요."},
+{q:"2 × 2 × 2 정육면체의 부피는 얼마입니까?",c:["6","8","4","12"],a:2,e:"부피 = 가로 × 세로 × 높이 = 2 × 2 × 2 = 8 입니다."},
+{q:"가로 4, 세로 3, 높이 2 인 직육면체의 부피는 얼마입니까?",c:["24","12","52","9"],a:1,e:"부피 = 가로 × 세로 × 높이 = 4 × 3 × 2 = 24 (㎤) 입니다. 한 층 12칸을 2층 쌓은 것이에요."},
+{q:"한 변이 3 인 정육면체의 부피는 얼마입니까?",c:["18","27","6","9"],a:2,e:"정육면체 부피 = 한 변 × 한 변 × 한 변 = 3 × 3 × 3 = 27 입니다."},
+{q:"가로 5, 세로 2, 높이 3 인 직육면체의 부피는 얼마입니까?",c:["30","10","25","17"],a:1,e:"부피 = 5 × 2 × 3 = 30 입니다."},
+{q:"겉넓이란 무엇입니까?",c:["겉을 감싼 모든 면의 넓이 합","칸을 채운 개수","밑면의 넓이","둘레 × 높이"],a:1,e:"상자를 펼치면 면이 6개 — 그 모든 면의 넓이를 더한 것이 겉넓이입니다."},
+{q:"한 변이 2 인 정육면체의 겉넓이는 얼마입니까?",c:["6","8","24","12"],a:3,e:"한 면의 넓이 2 × 2 = 4, 면이 6개이므로 4 × 6 = 24 입니다. (8은 부피예요!)"},
+{q:"부피의 단위로 알맞은 것은 무엇입니까?",c:["%","cm","㎠","㎤"],a:4,e:"길이를 세 번 곱하면 세제곱 ㎤ 입니다. 넓이는 두 번 곱해 ㎠ 입니다."},
+{q:"원기둥의 부피를 구하는 방법은 무엇입니까?",c:["둘레 × 높이","밑면의 넓이 × 높이","반지름 × 높이","밑면의 넓이 × 둘레"],a:2,e:"원기둥 부피 = 밑면(원)의 넓이 × 높이 입니다."},
+{q:"밑면의 넓이가 10, 높이가 4 인 원기둥의 부피는 얼마입니까?",c:["40","20","400","14"],a:1,e:"원기둥 부피 = 밑면 넓이 × 높이 = 10 × 4 = 40 입니다."}]},
+/*W13*/{num:13,title:"벡터",sub:"크기와 방향을 함께 나르는 수",qs:[
+{q:"벡터를 나타내는 화살표에서 '길이'는 무엇을 나타냅니까?",c:["크기","방향","온도","넓이"],a:1,e:"화살표의 길이 = 크기, 화살표가 가리키는 쪽 = 방향입니다."},
+{q:"벡터(화살표)가 나타내는 두 가지는 무엇입니까?",c:["넓이와 부피","크기와 방향","길이와 무게","시간과 온도"],a:2,e:"화살표의 길이 = 크기, 화살표가 가리키는 쪽 = 방향입니다."},
+{q:"다음 중 '크기와 방향'을 모두 가진 양(벡터)은 무엇입니까?",c:["무게","시간","힘","온도"],a:3,e:"힘은 '얼마나 세게(크기)' + '어느 쪽으로(방향)' 가 있어 벡터입니다. 온도·무게·시간은 크기만 있습니다."},
+{q:"크기와 방향이 같고 위치만 다른 두 화살표는 어떤 벡터입니까?",c:["같은 벡터","다른 벡터","반대 벡터","0인 벡터"],a:1,e:"화살표는 평행이동해도 그대로 — 크기·방향이 같으면 같은 벡터입니다."},
+{q:"오른쪽으로 3 인 벡터와 오른쪽으로 4 인 벡터를 더하면 무엇입니까?",c:["오른쪽 1","왼쪽 7","오른쪽 12","오른쪽 7"],a:4,e:"같은 방향이면 화살표를 이어 붙여 길이를 더합니다. 3 + 4 = 오른쪽 7"},
+{q:"위로 2 인 벡터와 위로 2 인 벡터를 더하면 무엇입니까?",c:["위로 4","위로 0","아래로 4","위로 2"],a:1,e:"같은 방향이면 길이를 더합니다. 2 + 2 = 위로 4"},
+{q:"두 벡터를 이어 붙여 더할 때, 잇는 부분은 어디와 어디입니까?",c:["머리와 꼬리","머리와 머리","꼬리와 꼬리","가운데끼리"],a:1,e:"앞 화살표의 머리에 뒤 화살표의 꼬리를 붙입니다. 맨 처음 꼬리 → 맨 끝 머리가 합!"},
+{q:"같은 방향으로 4 N 과 6 N 의 힘을 함께 밀면 합친 힘은 얼마입니까?",c:["10 N","24 N","0 N","2 N"],a:1,e:"같은 방향의 힘은 더합니다. 4 + 6 = 10 N"},
+{q:"줄다리기처럼 반대 방향으로 7 N 과 2 N 의 힘이 작용하면 합친 힘은 얼마입니까?",c:["9 N","5 N (센 쪽 방향)","14 N","0 N"],a:2,e:"반대 방향의 힘은 뺍니다. 7 − 2 = 5 N, 방향은 센 쪽(7 N 쪽)입니다."},
+{q:"반대 방향으로 5 N 과 5 N 의 힘이 서로 맞서면 합친 힘은 얼마입니까?",c:["0 N","10 N","25 N","5 N"],a:1,e:"반대 방향은 뺍니다. 5 − 5 = 0 N — 힘이 서로 상쇄되어 움직이지 않습니다."}]},
+/*W14*/{num:14,title:"통계와 확률",sub:"흩어진 수를 한눈에, 우연을 숫자로",qs:[
+{q:"평균을 구하는 방법으로 알맞은 것은 무엇입니까?",c:["가장 큰 수를 고른다","모두 곱한다","모두 더한다","모두 더한 뒤 개수로 나눈다"],a:4,e:"평균은 '다 모아서(합) 똑같이 나눠주는(÷개수)' 것입니다."},
+{q:"2 와 4 의 평균은 얼마입니까?",c:["3","2","4","6"],a:1,e:"평균 = (2 + 4) ÷ 2 = 6 ÷ 2 = 3 입니다."},
+{q:"4, 6, 5 의 평균은 얼마입니까?",c:["6","15","5","4"],a:3,e:"평균 = 합 ÷ 개수 = (4 + 6 + 5) ÷ 3 = 15 ÷ 3 = 5 입니다."},
+{q:"10, 20, 30 의 평균은 얼마입니까?",c:["20","15","25","60"],a:1,e:"평균 = (10 + 20 + 30) ÷ 3 = 60 ÷ 3 = 20 입니다."},
+{q:"막대그래프에서 막대가 높을수록 그 항목의 값은 어떻습니까?",c:["값이 크다","값이 작다","값이 0 이다","관계없다"],a:1,e:"막대 높이 = 그 항목의 값입니다. 높을수록 값이 큽니다(많습니다)."},
+{q:"시간에 따른 '변화 흐름'을 보기에 좋은 그래프는 무엇입니까?",c:["원그래프","막대그래프","꺾은선그래프","표"],a:3,e:"꺾은선그래프는 변화 흐름, 막대는 많고 적음 비교, 원은 전체 속 비율에 좋습니다."},
+{q:"동전을 한 번 던져 앞면이 나올 확률은 얼마입니까?",c:["1/2","1/4","1","0"],a:1,e:"전체 경우는 앞·뒤 2가지, 원하는 경우는 1가지 → 1 ÷ 2 = 1/2 입니다."},
+{q:"주사위를 한 번 던져 짝수(2, 4, 6)가 나올 확률은 얼마입니까?",c:["1/3","1/2","1","1/6"],a:2,e:"확률 = 원하는 경우 ÷ 전체 경우 = 3 ÷ 6 = 1/2 입니다."},
+{q:"반드시 일어나는 일의 확률은 얼마입니까?",c:["0","1/2","1","100"],a:3,e:"확률은 0(불가능)부터 1(확실) 사이입니다. 반드시 일어나면 1 입니다."},
+{q:"주사위를 한 번 던져 1 이 나올 확률은 얼마입니까?",c:["1/6","1/2","1/3","6"],a:1,e:"전체 경우 6가지 중 원하는 경우 1가지 → 1/6 입니다."}]}
+];
+
+const $app=document.getElementById('app');
+const KEY='math-arch-progress-v1';
+function loadProg(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}}
+function saveProg(p){try{localStorage.setItem(KEY,JSON.stringify(p))}catch(e){}}
+const IDKEY='math-arch-student-v1';
+function loadStu(){try{const s=JSON.parse(localStorage.getItem(IDKEY));return (s&&s.n)?s:null}catch(e){return null}}
+function saveStu(s){try{localStorage.setItem(IDKEY,JSON.stringify(s))}catch(e){}}
+function stuLabel(s){return '건축과 '+s.g+'학년 '+s.c+'반 '+s.n;}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* ---------- home ---------- */
+function idCardHTML(editing){
+  const stu=loadStu();
+  if(stu&&!editing){
+    return `<div class="id-card"><div class="id-t">🎓 내 정보 (결과 화면에 표시됩니다)</div>
+      <div class="id-done"><b>${esc(stuLabel(stu))}</b><button class="id-edit" id="idEdit">수정</button></div></div>`;
+  }
+  const g=stu?stu.g:'1', c=stu?stu.c:'1', n=stu?stu.n:'';
+  let gOpts='',cOpts='';
+  for(const v of ['1','2','3'])gOpts+=`<option value="${v}"${v===g?' selected':''}>${v}학년</option>`;
+  for(let i=1;i<=10;i++)cOpts+=`<option value="${i}"${String(i)===c?' selected':''}>${i}반</option>`;
+  return `<div class="id-card"><div class="id-t">🎓 내 정보 — 먼저 입력해 주세요 (성적 확인용)</div>
+    <div class="id-form">
+      <span>건축과</span>
+      <select id="stuG">${gOpts}</select>
+      <select id="stuC">${cOpts}</select>
+      <input id="stuN" type="text" placeholder="이름" maxlength="10" value="${esc(n)}">
+      <button class="id-save" id="idSave">저장</button>
+    </div>
+    <div class="id-warn" id="idWarn" style="display:none">이름을 입력해 주세요!</div></div>`;
+}
+function bindIdCard(){
+  const eBtn=document.getElementById('idEdit');
+  if(eBtn){eBtn.addEventListener('click',()=>renderHome(true));return;}
+  const sBtn=document.getElementById('idSave');
+  if(sBtn)sBtn.addEventListener('click',()=>{
+    const n=document.getElementById('stuN').value.trim();
+    if(n.length<2){document.getElementById('idWarn').style.display='block';document.getElementById('stuN').focus();return;}
+    saveStu({g:document.getElementById('stuG').value,c:document.getElementById('stuC').value,n});
+    if(!openFromHash())renderHome();
+  });
+}
+function renderHome(editingId){
+  const prog=loadProg();
+  let cards=WEEKS.map((w,i)=>{
+    const p=prog[w.num];
+    let badge='<span>아직 안 풀었어요</span>';
+    if(p){
+      if(p.best>=10)badge='<span class="star">★★★</span><br><span class="done">10문제 모두 정답!</span>';
+      else if(p.best>=8)badge='<span class="star">★★</span><br><span class="done">'+p.best+' / 10 정답</span>';
+      else badge='<span class="star">★</span><br><span>'+p.best+' / 10 정답</span>';
+    }
+    return `<button class="week-card" data-w="${i}">
+      <span class="wnum"><b>${w.num}</b>주차</span>
+      <span class="wmain"><b>${esc(w.title)}</b><span>${esc(w.sub)}</span></span>
+      <span class="wbadge">${badge}</span>
+    </button>`;
+  }).join('');
+  $app.innerHTML=`
+    <div class="home-head">
+      <h1>건축을 위한 기초수학</h1>
+      <div class="tag">문제풀이 연습장 · 레벨 1~10</div>
+      <div class="sub">주차를 골라 한 레벨씩 벽돌을 쌓아 보세요.<br>한 레벨 = 한 문제, 다 맞히면 벽이 완성됩니다.</div>
+    </div>
+    ${idCardHTML(editingId)}
+    <div class="week-list">${cards}</div>
+    <div class="foot">건축과 교수 김찬주 · 대학수학기초</div>`;
+  bindIdCard();
+  $app.querySelectorAll('.week-card').forEach(b=>b.addEventListener('click',()=>{
+    if(!loadStu()){
+      const w=document.getElementById('idWarn');
+      if(w){w.style.display='block';w.textContent='먼저 위에서 학년·반·이름을 입력하고 저장을 눌러 주세요!';}
+      const n=document.getElementById('stuN'); if(n)n.focus();
+      window.scrollTo({top:0,behavior:'smooth'});
+      return;
+    }
+    startWeek(+b.dataset.w);
+  }));
+  window.scrollTo(0,0);
+}
+
+/* ---------- quiz ---------- */
+let S=null; // {wi, lv, score, answered}
+function startWeek(wi){S={wi,lv:0,score:0};renderQ()}
+function wallHTML(laid,now){
+  let b='';
+  for(let r=0;r<2;r++){
+    for(let c=0;c<5;c++){
+      const i=r*5+c;
+      b+=`<div class="brick${i<laid?' laid':''}${i===now?' now':''}"></div>`;
+    }
+  }
+  return b;
+}
+function renderQ(){
+  const w=WEEKS[S.wi],q=w.qs[S.lv];
+  // 보기 순서를 매번 섞는다 (다시 풀 때 외워서 찍는 것 방지)
+  const order=[1,2,3,4];
+  for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
+  S.order=order; // order[화면 위치] = 원래 보기 번호
+  const choices=order.map((oi,i)=>`<button class="choice" data-i="${oi}"><span class="cnum">${i+1}</span><span>${esc(q.c[oi-1])}</span></button>`).join('');
+  $app.innerHTML=`
+    <div class="topbar">
+      <button class="back-btn" id="back">← 목차</button>
+      <div class="t"><b>${w.num}주차 — ${esc(w.title)}</b><span>레벨 ${S.lv+1} / 10 · 맞힌 문제 ${S.score}</span><span class="who">${(s=>s?esc(stuLabel(s)):'')(loadStu())}</span></div>
+    </div>
+    <div class="wall">${wallHTML(S.lv,S.lv)}<div class="wall-label">한 문제를 풀 때마다 벽돌이 한 장씩 쌓여요</div></div>
+    <div class="qcard">
+      <span class="lv-chip">레벨 ${S.lv+1}</span>
+      <div class="qtext">${esc(q.q)}</div>
+      <div class="choices">${choices}</div>
+      <div id="fb"></div>
+    </div>`;
+  document.getElementById('back').addEventListener('click',renderHome);
+  $app.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>answer(+b.dataset.i)));
+  window.scrollTo(0,0);
+}
+const PRAISE=["정답! 벽돌 한 장 쌓았어요","맞았어요! 잘하고 있어요","정답이에요, 아주 좋아요","딱 맞았어요!","정답! 점점 단단해져요"];
+function answer(pick){
+  const w=WEEKS[S.wi],q=w.qs[S.lv],ok=pick===q.a;
+  if(ok)S.score++;
+  $app.querySelectorAll('.choice').forEach(b=>{
+    b.disabled=true;
+    const i=+b.dataset.i;
+    if(i===pick)b.classList.add(ok?'picked-ok':'picked-no');
+    else if(i===q.a)b.classList.add('reveal');
+    else b.classList.add('dim');
+  });
+  const fb=document.getElementById('fb');
+  const head=ok?PRAISE[Math.floor(Math.random()*PRAISE.length)]:"괜찮아요, 틀리면서 배우는 거예요";
+  fb.innerHTML=`
+    <div class="fb ${ok?'ok':'no'}"><b>${head}</b><span class="exp">${esc(q.e)}</span></div>
+    <button class="next-btn" id="next">${S.lv<9?'다음 레벨 →':'결과 보기'}</button>`;
+  if(ok){const bricks=$app.querySelectorAll('.wall .brick');if(bricks[S.lv])bricks[S.lv].classList.add('laid');}
+  document.getElementById('next').addEventListener('click',()=>{
+    S.lv++;
+    if(S.lv<10)renderQ();else renderResult();
+  });
+  document.getElementById('next').focus();
+}
+
+/* ---------- result ---------- */
+function renderResult(){
+  const w=WEEKS[S.wi],sc=S.score;
+  const prog=loadProg();
+  const prev=prog[w.num]?prog[w.num].best:0;
+  prog[w.num]={best:Math.max(prev,sc)};
+  saveProg(prog);
+  let emoji,msg;
+  if(sc>=10){emoji="🏆";msg="10문제 전부 정답! 이번 주 벽이 완벽하게 완성됐어요.";}
+  else if(sc>=8){emoji="🧱";msg="아주 튼튼한 벽이에요. 틀린 문제의 풀이만 한 번 더 읽어 보세요.";}
+  else if(sc>=5){emoji="💪";msg="절반을 넘었어요! 다시 풀면 분명 더 올라갑니다.";}
+  else{emoji="🌱";msg="시작이 반이에요. 강의 영상을 한 번 더 보고 다시 도전해 보세요.";}
+  const prompt=`나는 건축과 1학년이야. '${w.num}주차 ${w.title}' 내용을 아주 쉽게 복습하고 싶어. 초등학생도 이해할 수 있는 수준으로, 건축 현장(벽돌·시멘트·페인트 같은 소재)을 예로 든 4지선다 연습문제를 내줘. 문서나 캔버스로 만들지 말고, 이 채팅창에서 한 문제씩 내 줘. 내가 답하면 채점하고 풀이를 설명한 다음 문제를 내 줘. 총 5문제 부탁해.`;
+  let bricks='';
+  for(let i=0;i<10;i++)bricks+=`<div class="brick${i<sc?' laid':''}"></div>`;
+  const stu=loadStu();
+  const now=new Date();
+  const pad=x=>String(x).padStart(2,'0');
+  const timeStr=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes());
+  $app.innerHTML=`
+    <div class="result">
+      <div class="big">${emoji}</div>
+      <h2>${w.num}주차 — ${esc(w.title)}</h2>
+      ${stu?`<div class="id-line"><b>${esc(stuLabel(stu))}</b></div>`:''}
+      <div class="score"><b>${sc}</b> / 10 문제 정답</div>
+      <div class="res-time">풀이 완료 ${timeStr} · 이 화면을 캡처해서 제출하세요 📸</div>
+      <div class="res-wall">${bricks}</div>
+      <div class="msg">${msg}</div>
+      <div class="btn-row">
+        <button id="retry">다시 풀기</button>
+        <button id="home" class="primary">목차로</button>
+      </div>
+      <div class="ai-box">
+        <div class="ai-t">🤖 AI와 더 연습하기</div>
+        <div>아래 문장을 복사해서 AI(클로드 등)에게 붙여 넣으면, 이번 주 내용으로 새 연습문제를 만들어 줍니다.</div>
+        <div class="ai-p" id="aiP">${esc(prompt)}</div>
+        <button class="copy" id="copy">문장 복사하기</button>
+      </div>
+    </div>`;
+  document.getElementById('retry').addEventListener('click',()=>startWeek(S.wi));
+  document.getElementById('home').addEventListener('click',renderHome);
+  document.getElementById('copy').addEventListener('click',function(){
+    const t=document.getElementById('aiP').textContent;
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(()=>{this.textContent='복사했어요! AI에게 붙여 넣으세요';});
+    }else{
+      const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');this.textContent='복사했어요! AI에게 붙여 넣으세요';}catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+  window.scrollTo(0,0);
+}
+
+/* QR 딥링크: 주소 뒤에 #w5 를 붙이면 5주차로 바로 이동 (이름 저장된 경우) */
+function openFromHash(){
+  const m=location.hash.match(/^#w(\d+)$/);
+  if(!m)return false;
+  const wi=WEEKS.findIndex(w=>w.num===+m[1]);
+  if(wi<0||!loadStu())return false;
+  startWeek(wi);
+  return true;
+}
+if(!openFromHash())renderHome();
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>건축을 위한 기초수학</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap">
+<style>
+:root{
+  --bg:#F6F8FB; --card:#FFFFFF; --ink:#1F3B63; --sub:#76808C;
+  --line:#D9E0E9; --brick:#BF5B3C; --brick-soft:#F4E2DB;
+  --ok:#2F7D52; --ok-soft:#E3F1E8; --no:#B54040; --no-soft:#F7E5E3;
+  --gold:#C9932B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Gowun Dodum','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  background:var(--bg); color:var(--ink);
+  -webkit-font-smoothing:antialiased; line-height:1.55;
+  word-break:keep-all;
+}
+.wrap{max-width:600px;margin:0 auto;padding:26px 16px 70px}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
+button:focus-visible,a:focus-visible{outline:3px solid var(--brick);outline-offset:2px;border-radius:8px}
+
 /* ---------- home ---------- */
 .home-head{text-align:center;margin-bottom:22px}
 .home-head h1{font-size:27px;letter-spacing:-0.5px;text-wrap:balance}
