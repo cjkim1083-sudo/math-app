@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2주차 건축이라는 행위 추가문제</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@500;700;900&display=swap">
+<style>
+  :root{
+    --bg:#eef1f5;--panel:#ffffff;--panel-2:#f6f8fb;
+    --ink:#152233;--ink-soft:#465a72;--ink-faint:#7f92a8;
+    --line:#d9e0ea;--line-strong:#c2cddb;
+    --brand:#1f4e79;--brand-soft:#e7eef6;--brand-ink:#163a5c;
+    --amber:#c07a1e;
+    --ok:#1f7a4d;--ok-soft:#e3f3ea;--ok-line:#9bd2b3;
+    --no:#b23a48;--no-soft:#fbe8ea;--no-line:#e6a9b1;
+    --shadow:0 1px 2px rgba(21,34,51,.04),0 8px 28px rgba(21,34,51,.08);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e151f;--panel:#16202e;--panel-2:#1b2736;
+      --ink:#e8eef6;--ink-soft:#a9b8ca;--ink-faint:#728196;
+      --line:#2a3a4e;--line-strong:#38495f;
+      --brand:#6ea8dd;--brand-soft:#1c3348;--brand-ink:#bcd7f0;
+      --amber:#e0a755;
+      --ok:#57c98a;--ok-soft:#173328;--ok-line:#2f6b4c;
+      --no:#e8858f;--no-soft:#33191d;--no-line:#6e343c;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e151f;--panel:#16202e;--panel-2:#1b2736;
+    --ink:#e8eef6;--ink-soft:#a9b8ca;--ink-faint:#728196;
+    --line:#2a3a4e;--line-strong:#38495f;
+    --brand:#6ea8dd;--brand-soft:#1c3348;--brand-ink:#bcd7f0;
+    --amber:#e0a755;
+    --ok:#57c98a;--ok-soft:#173328;--ok-line:#2f6b4c;
+    --no:#e8858f;--no-soft:#33191d;--no-line:#6e343c;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans KR",system-ui,-apple-system,sans-serif;line-height:1.6;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:26px 26px;background-position:center;
+  }
+  body::before{content:"";position:fixed;inset:0;background:var(--bg);opacity:.62;pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:28px 18px 64px}
+
+  header.app{margin-bottom:6px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);font-weight:700;margin:0 0 6px}
+  h1.title{font-family:"Noto Serif KR",serif;font-weight:900;color:var(--brand-ink);
+    font-size:clamp(25px,5.5vw,37px);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+  .subtitle{color:var(--ink-soft);font-size:14.5px;margin:8px 0 0}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:26px 24px;margin-top:18px}
+
+  .intro{text-align:center;padding:14px 6px 8px}
+  .intro .badge{display:inline-flex;gap:14px;align-items:center;background:var(--panel-2);
+    border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 18px;margin:4px 0 18px;font-size:13px;font-weight:700;color:var(--ink-soft)}
+  .intro .badge b{color:var(--brand)}
+  .intro .badge .lv{background:var(--brand);color:#fff;border-radius:999px;padding:5px 13px;font-size:12px}
+  .intro h2{font-family:"Noto Serif KR",serif;font-size:23px;margin:2px 0 8px;color:var(--ink)}
+  .intro p.lead{color:var(--ink-soft);font-size:15px;margin:0 auto 14px;max-width:46ch}
+  .intro .wbnote{font-size:12.5px;color:var(--ink-faint);background:var(--panel-2);border:1px dashed var(--line-strong);
+    border-radius:10px;padding:9px 13px;margin:0 auto 22px;max-width:42ch;line-height:1.55}
+  .intro .wbnote b{color:var(--brand)}
+  .topics{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:0 0 26px}
+  .topics span{font-size:12.5px;font-weight:600;color:var(--ink-soft);background:var(--brand-soft);
+    border:1px solid var(--line);border-radius:8px;padding:5px 11px}
+
+  /* 학생 정보 입력 */
+  .info-title{font-size:13px;font-weight:800;color:var(--brand);margin:2px 0 12px;display:flex;
+    align-items:center;gap:6px;justify-content:center}
+  .sinfo{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;max-width:380px;margin:0 auto 8px;text-align:left}
+  .sinfo .full{grid-column:1 / -1}
+  .sinfo label{display:block;font-size:12px;font-weight:700;color:var(--ink-soft);margin:0 0 5px;letter-spacing:.02em}
+  .sinfo input,.sinfo select{width:100%;box-sizing:border-box;font-family:inherit;font-size:15px;color:var(--ink);
+    background:var(--panel-2);border:1.5px solid var(--line-strong);border-radius:10px;padding:11px 12px;transition:.14s}
+  .sinfo input:focus,.sinfo select:focus{outline:none;border-color:var(--brand);background:var(--panel)}
+  .serr{color:var(--no);font-size:12.5px;font-weight:700;margin:2px 0 14px;min-height:16px}
+  /* 결과 학생 헤더 */
+  .whocard{display:flex;flex-direction:column;gap:3px;background:var(--brand-soft);border:1px solid var(--line);
+    border-radius:12px;padding:13px 16px;margin:0 auto 16px;max-width:320px}
+  .whocard .who{font-size:15px;color:var(--ink)} .whocard .who b{font-size:17px;color:var(--brand-ink)}
+  .whocard .when{font-size:12px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+  .capnote{font-size:13px;font-weight:700;color:var(--amber);background:var(--panel-2);border:1px dashed var(--amber);
+    border-radius:10px;padding:10px 14px;margin:0 auto 18px;max-width:340px;line-height:1.5}
+
+  .meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .qcount{font-size:13px;font-weight:700;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .qcount b{color:var(--brand);font-size:15px}
+  .score-pill{font-size:12.5px;font-weight:700;color:var(--ink-soft);background:var(--panel-2);
+    border:1px solid var(--line);padding:4px 11px;border-radius:999px;font-variant-numeric:tabular-nums}
+  .bar{height:7px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),#3a76ad);width:0;transition:width .35s ease}
+
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--brand);
+    background:var(--brand-soft);border-radius:6px;padding:3px 9px;margin:18px 0 10px}
+  .qtext{font-size:18px;font-weight:700;color:var(--ink);line-height:1.55;margin:0 0 20px;text-wrap:pretty}
+  .qtext em{font-style:normal;color:var(--no);font-weight:900}
+
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+    background:var(--panel-2);border:1.5px solid var(--line);border-radius:12px;padding:14px 15px;
+    cursor:pointer;font-family:inherit;font-size:15.5px;color:var(--ink);transition:.14s;line-height:1.45}
+  .opt:hover:not(:disabled){border-color:var(--brand);background:var(--brand-soft)}
+  .opt:disabled{cursor:default}
+  .opt .num{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--panel);
+    border:1.5px solid var(--line-strong);color:var(--ink-soft);font-weight:800;font-size:14px;
+    display:grid;place-items:center;margin-top:1px;transition:.14s;font-variant-numeric:tabular-nums}
+  .opt .txt{padding-top:1px}
+  .opt.correct{border-color:var(--ok-line);background:var(--ok-soft)}
+  .opt.correct .num{background:var(--ok);border-color:var(--ok);color:#fff}
+  .opt.wrong{border-color:var(--no-line);background:var(--no-soft)}
+  .opt.wrong .num{background:var(--no);border-color:var(--no);color:#fff}
+  .opt.dim{opacity:.55}
+  .mark{margin-left:auto;font-weight:800;font-size:13px;align-self:center;white-space:nowrap}
+  .opt.correct .mark{color:var(--ok)} .opt.wrong .mark{color:var(--no)}
+
+  .exp{margin-top:16px;border-radius:12px;padding:15px 16px;font-size:14px;line-height:1.62;
+    border:1px solid var(--line);background:var(--panel-2);display:none}
+  .exp.show{display:block;animation:rise .25s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .exp .head{font-weight:800;font-size:13px;letter-spacing:.02em;margin:0 0 6px;display:flex;align-items:center;gap:7px}
+  .exp.ok .head{color:var(--ok)} .exp.no .head{color:var(--no)}
+  .exp p{margin:0;color:var(--ink-soft)}
+  .exp b{color:var(--ink)}
+  .exp .law{display:block;margin-top:9px;font-size:12px;color:var(--ink-faint);border-top:1px dashed var(--line-strong);padding-top:8px}
+
+  .controls{margin-top:20px;display:flex;justify-content:flex-end;gap:10px}
+  .btn{appearance:none;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer;
+    border-radius:11px;padding:12px 24px;border:1.5px solid transparent;transition:.15s}
+  .btn.lg{padding:14px 34px;font-size:16px}
+  .btn.primary{background:var(--brand);color:#fff}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{background:transparent;color:var(--ink-soft);border-color:var(--line-strong)}
+  .btn.ghost:hover{border-color:var(--brand);color:var(--brand)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+
+  .result{text-align:center;padding:10px 4px 6px}
+  .result .ring{width:132px;height:132px;margin:6px auto 4px;position:relative}
+  .result .ring svg{transform:rotate(-90deg)}
+  .result .ring .val{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+  .result .ring .val b{font-family:"Noto Serif KR",serif;font-size:32px;font-weight:900;color:var(--brand-ink);line-height:1;font-variant-numeric:tabular-nums}
+  .result .ring .val span{font-size:12px;color:var(--ink-faint);font-weight:700}
+  .result h2{font-family:"Noto Serif KR",serif;font-size:23px;margin:12px 0 4px;color:var(--ink)}
+  .result .msg{color:var(--ink-soft);font-size:14.5px;margin:0 0 18px}
+  .review{text-align:left;display:flex;flex-direction:column;gap:8px;margin:18px 0 22px}
+  .rev{display:flex;gap:11px;align-items:flex-start;background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-size:13.5px}
+  .rev .ico{flex:0 0 auto;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-weight:900;font-size:13px;color:#fff;margin-top:1px}
+  .rev.y .ico{background:var(--ok)} .rev.n .ico{background:var(--no)}
+  .rev .body b{display:block;color:var(--ink);font-weight:700;margin-bottom:2px}
+  .rev .body span{color:var(--ink-faint);font-size:12.5px}
+  .center{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+  footer.note{text-align:center;margin-top:26px;font-size:12px;color:var(--ink-faint);line-height:1.7}
+  footer.note b{color:var(--ink-soft)}
+  @media (max-width:480px){.card{padding:22px 17px}.qtext{font-size:16.5px}.opt{font-size:14.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="app">
+    <p class="eyebrow">건축법규 · 2주차 · 워크북 CH01 연계</p>
+    <h1 class="title">‘건축’이라는 행위 — 추가문제</h1>
+    <p class="subtitle">워크북 문제를 푼 뒤, 같은 개념을 응용한 실전 문제로 한 번 더 · 대림대학교 건축과</p>
+  </header>
+
+  <main class="card" id="stage" aria-live="polite"></main>
+
+  <footer class="note">
+    출제 범위 · <b>워크북 CHAPTER 01 ‘건축’이라는 행위</b> (건축행위 5종·주요구조부·대수선·용어의 정의)<br>
+    건축(산업)기사 기출 응용 · 정답·해설은 학습용 참고자료이며, 실제 법령 적용 시 최신 조문을 확인하세요.
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const LECTURE = "2주차 · ‘건축’이라는 행위";
+  const QUESTIONS = [
+    {
+      tag:"건축행위 5종 · 이전",
+      q:"건축법상 건축행위 중 <b>‘이전’</b>에 관한 설명으로 옳은 것은?",
+      options:[
+        "건축물이 없는 대지에 새로 건축물을 축조하는 것",
+        "건축물의 주요구조부를 해체하여 다른 대지로 옮기는 것",
+        "건축물의 주요구조부를 해체하지 아니하고 같은 대지의 다른 위치로 옮기는 것",
+        "재해로 멸실된 건축물을 종전 규모로 다시 축조하는 것"
+      ],
+      answer:2,
+      explain:"<b>이전</b>은 건축물의 <b>주요구조부를 해체하지 아니하고 같은 대지의 다른 위치로 옮기는 것</b>입니다. 주요구조부를 해체하면 이전이 아니며, 다른 대지로 옮기는 것도 이전이 아닙니다.",
+      law:"건축법 시행령 제2조 제5호"
+    },
+    {
+      tag:"건축행위 5종 · 재축",
+      q:"건축법상 <b>‘재축’</b>의 요건으로 옳은 것은?",
+      options:[
+        "소유자가 자의로 철거한 후 종전 규모로 다시 축조하는 것",
+        "천재지변이나 재해로 멸실된 경우, 연면적 합계를 종전 규모 이하로 다시 축조하는 것",
+        "기존 건축물이 있는 대지에서 건축물의 높이를 늘리는 것",
+        "부속건축물만 있는 대지에 새로 주된 건축물을 축조하는 것"
+      ],
+      answer:1,
+      explain:"<b>재축</b>은 건축물이 <b>천재지변·재해로 멸실</b>된 경우 그 대지에 다시 축조하되, <b>연면적 합계는 종전 규모 이하</b>로 하는 것입니다. ①은 개축, ③은 증축, ④는 신축에 해당합니다.",
+      law:"건축법 시행령 제2조 제4호"
+    },
+    {
+      tag:"주요구조부",
+      q:"다음 중 건축법상 <b>주요구조부에 해당하지 <em>않는</em></b> 것으로만 묶인 것은?",
+      options:[
+        "내력벽 · 주계단",
+        "지붕틀 · 바닥",
+        "사이기둥 · 옥외계단",
+        "기둥 · 보"
+      ],
+      answer:2,
+      explain:"주요구조부 6종은 <b>내력벽·기둥·바닥·보·지붕틀·주계단</b>입니다. <b>사이기둥·옥외계단</b>은 최하층 바닥·작은보·차양과 함께 주요구조부에서 <b>제외</b>됩니다.",
+      law:"건축법 제2조 제1항 제7호"
+    },
+    {
+      tag:"대수선의 범위",
+      q:"다음 중 건축법령상 <b>대수선에 해당하는</b> 것은?",
+      options:[
+        "기둥을 두 개 수선하는 것",
+        "보를 세 개 이상 수선 또는 변경하는 것",
+        "내력벽의 벽면적을 20제곱미터 수선하는 것",
+        "세대 내부의 비내력 칸막이벽을 해체하는 것"
+      ],
+      answer:1,
+      explain:"대수선의 수량 기준은 <b>기둥·보·지붕틀 각각 ‘세 개 이상’</b> 수선·변경입니다. 내력벽은 <b>벽면적 30㎡ 이상</b>이어야 하며(20㎡는 아님), 세대 내부의 비내력 칸막이벽 해체는 대수선이 아닙니다.",
+      law:"건축법 시행령 제3조의2"
+    },
+    {
+      tag:"개축과 재축의 구분",
+      q:"‘개축’과 ‘재축’의 차이에 관한 설명으로 옳은 것은?",
+      options:[
+        "개축은 재해로 멸실된 것을, 재축은 자의로 철거한 것을 다시 짓는 것이다",
+        "개축은 자의(自意)로 철거한 후, 재축은 재해로 멸실된 후 종전 규모로 다시 짓는 것이다",
+        "개축과 재축은 모두 증축의 한 종류이다",
+        "개축은 다른 대지로 옮겨 짓고, 재축은 같은 대지에 짓는 것이다"
+      ],
+      answer:1,
+      explain:"개축과 재축은 결과적으로 ‘종전 규모로 다시 축조’로 비슷하지만, <b>개축은 자의로 철거</b>한 뒤, <b>재축은 천재지변·재해로 멸실</b>된 뒤 다시 짓는다는 점에서 구분됩니다.",
+      law:"건축법 시행령 제2조 제3호·제4호"
+    },
+    {
+      tag:"용어의 정의 · 건축설비",
+      q:"다음 중 건축법상 <b>‘건축설비’에 해당하는</b> 것은?",
+      options:[
+        "주계단",
+        "내력벽",
+        "승강기",
+        "지붕틀"
+      ],
+      answer:2,
+      explain:"건축설비는 전기·전화·급수·배수·환기·난방·냉방·소화·배연 및 오물처리 설비, 굴뚝, <b>승강기</b>, 피뢰침, 저수조, 방범시설 등입니다. 주계단·내력벽·지붕틀은 주요구조부에 해당합니다.",
+      law:"건축법 제2조 제1항 제4호"
+    },
+    {
+      tag:"용어의 정의 · 부속건축물",
+      q:"건축법령상 <b>‘부속건축물’</b>에 관한 설명으로 옳은 것은?",
+      options:[
+        "같은 대지에서 주된 건축물과 분리된 부속용도의 건축물로, 주된 건축물을 이용·관리하는 데 필요한 건축물",
+        "주된 건축물과 지붕으로 연결된 통로",
+        "다른 대지에 설치된 창고",
+        "공사 기간에만 임시로 설치하는 가설건축물"
+      ],
+      answer:0,
+      explain:"<b>부속건축물</b>은 같은 대지에서 <b>주된 건축물과 분리된 부속용도의 건축물</b>로서, 주된 건축물을 이용 또는 관리하는 데 필요한 건축물을 말합니다.",
+      law:"건축법 시행령 제2조 제12호"
+    },
+    {
+      tag:"리모델링 특례",
+      q:"건축법상 <b>리모델링이 쉬운 구조</b>의 공동주택 건축을 촉진하기 위하여, 용적률·높이 제한 등을 완화 적용할 수 있는 비율의 범위로 옳은 것은?",
+      options:[
+        "100분의 110의 범위",
+        "100분의 120의 범위",
+        "100분의 150의 범위",
+        "100분의 200의 범위"
+      ],
+      answer:1,
+      explain:"리모델링이 쉬운 구조로 공동주택을 건축하면 제56조(용적률)·제60조(높이)·제61조(일조 높이) 기준을 <b>100분의 120의 범위</b>에서 완화하여 적용할 수 있습니다.",
+      law:"건축법 제8조 · 시행령 제6조의5"
+    },
+    {
+      tag:"대수선의 범위 · 외벽 마감재료",
+      q:"건축물의 <b>외벽에 사용하는 마감재료</b>를 증설·해체하거나 벽면적 몇 제곱미터 이상 수선·변경하는 것이 대수선에 해당하는가?",
+      options:[
+        "10제곱미터 이상",
+        "20제곱미터 이상",
+        "30제곱미터 이상",
+        "50제곱미터 이상"
+      ],
+      answer:2,
+      explain:"외벽 마감재료를 증설·해체하거나 <b>벽면적 30㎡ 이상</b> 수선·변경하는 것은 대수선에 해당합니다. ‘내력벽 30㎡ 이상’ 기준과 숫자가 같다는 점을 함께 기억해 두세요.",
+      law:"건축법 시행령 제3조의2 제9호"
+    },
+    {
+      tag:"용어의 정의 · 건축물",
+      q:"건축법상 <b>‘건축물’</b>의 정의에 <b>포함되지 <em>않는</em></b> 것은?",
+      options:[
+        "토지에 정착하는 것으로서 지붕과 기둥 또는 벽이 있는 것",
+        "건축물에 딸린 대문·담장 등의 시설물",
+        "지하나 고가(高架)에 설치하는 사무소·공연장·점포·차고·창고",
+        "토지에 정착하지 아니하고 이동이 쉬운 컨테이너 구조물"
+      ],
+      answer:3,
+      explain:"건축물은 <b>‘토지에 정착(定着)’</b>하는 공작물 중 지붕과 기둥 또는 벽이 있는 것과 이에 딸린 시설물, 지하·고가에 설치하는 사무소·공연장·점포·차고·창고 등입니다. <b>토지에 정착하지 않고 이동이 쉬운 것</b>은 건축물로 보지 않습니다.",
+      law:"건축법 제2조 제1항 제2호"
+    }
+  ];
+
+  const stage = document.getElementById('stage');
+  let idx=0, score=0, answered=false, results=[], student=null, finishedAt="";
+
+  function loadSaved(){
+    try{ return JSON.parse(localStorage.getItem('lawquiz_student')||'null'); }catch(e){ return null; }
+  }
+  function saveStudent(s){
+    try{ localStorage.setItem('lawquiz_student', JSON.stringify(s)); }catch(e){}
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  renderIntro();
+
+  function renderIntro(){
+    const prev = student || loadSaved() || {dept:"건축과",grade:"2",klass:"화요일반",name:""};
+    let topics='';
+    ["건축행위 5종","주요구조부","대수선","리모델링","용어의 정의"]
+      .forEach(function(t){ topics+='<span>'+t+'</span>'; });
+    function gopt(v){ return '<option'+(prev.grade===v?' selected':'')+'>'+v+'</option>'; }
+    function copt(v){ return '<option'+(prev.klass===v?' selected':'')+'>'+v+'</option>'; }
+    stage.innerHTML =
+      '<div class="intro">'+
+        '<div class="badge"><b>'+LECTURE+'</b> · 총 '+QUESTIONS.length+'문제 <span class="lv">기사 수준</span></div>'+
+        '<h2>워크북 다 풀었나요? 한 번 더!</h2>'+
+        '<p class="lead">워크북 CH01의 실전 기출과 같은 출제 포인트를, 새로운 문항으로 응용했습니다. 답을 고르면 바로 정답·해설과 근거 조문이 표시돼요.</p>'+
+        '<p class="info-title">🎓 이름을 입력하고 시작하세요</p>'+
+        '<div class="sinfo">'+
+          '<div class="full"><label>학과</label><input id="f_dept" value="'+esc(prev.dept||'건축과')+'"></div>'+
+          '<div><label>학년</label><select id="f_grade">'+gopt('1')+gopt('2')+gopt('3')+gopt('4')+'</select></div>'+
+          '<div><label>반</label><select id="f_class">'+copt('화요일반')+copt('목요일반')+'</select></div>'+
+          '<div class="full"><label>이름</label><input id="f_name" placeholder="예: 홍길동" value="'+esc(prev.name||'')+'"></div>'+
+        '</div>'+
+        '<p class="serr" id="serr"></p>'+
+        '<p class="wbnote">📘 이 문제들은 <b>워크북에 없는 추가 문제</b>입니다. 워크북 CH01을 먼저 풀고 도전해 보세요.</p>'+
+        '<div class="topics">'+topics+'</div>'+
+        '<button class="btn primary lg" id="begin">추가문제 풀기 →</button>'+
+      '</div>';
+    document.getElementById('begin').addEventListener('click', function(){
+      const name=(document.getElementById('f_name').value||'').trim();
+      if(!name){
+        document.getElementById('serr').textContent='이름을 입력해 주세요.';
+        document.getElementById('f_name').focus(); return;
+      }
+      student={
+        dept:(document.getElementById('f_dept').value||'건축과').trim(),
+        grade:document.getElementById('f_grade').value,
+        klass:document.getElementById('f_class').value,
+        name:name
+      };
+      saveStudent(student);
+      idx=0;score=0;answered=false;results=[];renderQuestion();
+    });
+  }
+
+  function renderQuestion(){
+    const q=QUESTIONS[idx]; answered=false;
+    const pct=Math.round(idx/QUESTIONS.length*100);
+    stage.innerHTML =
+      '<div class="meta">'+
+        '<span class="qcount">문제 <b>'+(idx+1)+'</b> / '+QUESTIONS.length+'</span>'+
+        '<span class="score-pill">맞힌 개수 '+score+'</span>'+
+      '</div>'+
+      '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '<span class="tag">'+q.tag+'</span>'+
+      '<p class="qtext">'+q.q+'</p>'+
+      '<div class="opts" id="opts"></div>'+
+      '<div class="exp" id="exp"></div>'+
+      '<div class="controls"><button class="btn primary" id="next" disabled>답안 선택</button></div>';
+    const optsEl=document.getElementById('opts');
+    const nums=['①','②','③','④','⑤'];
+    q.options.forEach(function(opt,i){
+      const b=document.createElement('button');
+      b.className='opt';b.type='button';
+      b.innerHTML='<span class="num">'+nums[i]+'</span><span class="txt">'+opt+'</span>';
+      b.addEventListener('click',function(){choose(i);});
+      optsEl.appendChild(b);
+    });
+    document.getElementById('next').addEventListener('click',nextQuestion);
+  }
+
+  function choose(i){
+    if(answered)return; answered=true;
+    const q=QUESTIONS[idx]; const correct=(i===q.answer);
+    if(correct)score++;
+    results.push({tag:q.tag,correct:correct});
+    document.querySelectorAll('.opt').forEach(function(el,k){
+      el.disabled=true;
+      if(k===q.answer){el.classList.add('correct');el.insertAdjacentHTML('beforeend','<span class="mark">정답</span>');}
+      else if(k===i){el.classList.add('wrong');el.insertAdjacentHTML('beforeend','<span class="mark">내 선택</span>');}
+      else{el.classList.add('dim');}
+    });
+    const exp=document.getElementById('exp');
+    exp.className='exp show '+(correct?'ok':'no');
+    exp.innerHTML='<p class="head">'+(correct?'✓ 정답입니다':'✕ 다시 확인해요')+'</p><p>'+q.explain+'</p>'+
+      '<span class="law">📖 근거 · '+q.law+'</span>';
+    const sp=document.querySelector('.score-pill'); if(sp)sp.textContent='맞힌 개수 '+score;
+    const n=document.getElementById('next');
+    n.disabled=false;
+    n.textContent=(idx+1<QUESTIONS.length)?'다음 문제 →':'결과 보기 →';
+  }
+
+  function nextQuestion(){
+    if(idx+1<QUESTIONS.length){idx++;renderQuestion();}
+    else renderResult();
+  }
+
+  function stamp(){
+    const d=new Date(), p=function(n){return(n<10?'0':'')+n;};
+    return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
+  }
+
+  function renderResult(){
+    const total=QUESTIONS.length, pct=Math.round(score/total*100);
+    const R=58,C=2*Math.PI*R,off=C*(1-score/total);
+    finishedAt = stamp();
+    const s = student || {grade:'',klass:'',name:'학생',dept:'건축과'};
+    let title,msg;
+    if(pct===100){title="완벽해요! 🎉";msg="‘건축’이라는 행위, 확실히 잡았어요.";}
+    else if(pct>=80){title="아주 좋아요";msg="조금만 더 다지면 완벽합니다.";}
+    else if(pct>=60){title="잘 하고 있어요";msg="틀린 문제의 해설을 다시 읽어보세요.";}
+    else{title="복습이 필요해요";msg="워크북 CH01 핵심 정리표를 한 번 더 볼까요?";}
+    let rev='';
+    results.forEach(function(r,i){
+      rev+='<div class="rev '+(r.correct?'y':'n')+'"><span class="ico">'+(r.correct?'✓':'✕')+'</span>'+
+        '<span class="body"><b>문제 '+(i+1)+'. '+(r.correct?'정답':'오답')+'</b><span>'+r.tag+'</span></span></div>';
+    });
+    stage.innerHTML=
+      '<div class="result">'+
+        '<div class="whocard">'+
+          '<span class="who">'+esc(s.dept)+' '+esc(s.grade)+'학년 '+esc(s.klass)+' · <b>'+esc(s.name)+'</b></span>'+
+          '<span class="when">완료 '+finishedAt+'</span>'+
+        '</div>'+
+        '<div class="ring"><svg width="132" height="132" viewBox="0 0 132 132">'+
+          '<circle cx="66" cy="66" r="'+R+'" fill="none" stroke="var(--line)" stroke-width="11"></circle>'+
+          '<circle cx="66" cy="66" r="'+R+'" fill="none" stroke="var(--brand)" stroke-width="11" stroke-linecap="round" '+
+            'stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'"></circle></svg>'+
+          '<div class="val"><b>'+score+'/'+total+'</b><span>'+pct+'점</span></div></div>'+
+        '<h2>'+title+'</h2><p class="msg">'+msg+'</p>'+
+        '<div class="review">'+rev+'</div>'+
+        '<div class="center"><button class="btn primary" id="retry">다시 풀기</button></div>'+
+      '</div>';
+    document.getElementById('retry').addEventListener('click',renderIntro);
+  }
+})();
+</script>
+</body>
+</html>
