@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>건축법규 5주차 추가 문제 — 건축 허가와 신고, 사용승인</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1f4e79; --navy-deep:#163a5c; --accent:#c2703d; --ok:#2f9e5b; --no:#c0392b;
+  --bg:#f4f6f9; --card:#ffffff; --ink:#22303c; --sub:#5c6b7a; --line:#d9e0e8; --tint:#eaf1f7;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#101822; --card:#1a2532; --ink:#e8eef4; --sub:#9fb0c0; --line:#2c3a4a; --tint:#203042; --navy:#4d84b8; --navy-deep:#0e1926; }
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--ink); padding:0 16px; padding-block:0 40px; min-height:100vh;}
+.wrap{max-width:640px; margin:0 auto;}
+header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%); color:#fff; margin:0 -16px; padding:28px 20px 24px; text-align:center;}
+header .eyebrow{font-size:13px; letter-spacing:.14em; opacity:.85; font-weight:500;}
+header h1{font-family:'Noto Serif KR',serif; font-size:24px; font-weight:900; margin-top:8px;}
+header .sub{font-size:13.5px; opacity:.85; margin-top:8px; line-height:1.5;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 20px; margin-top:18px; box-shadow:0 1px 4px rgba(15,30,50,.06);}
+.hidden{display:none!important;}
+label{display:block; font-size:13px; font-weight:700; color:var(--sub); margin:14px 0 5px;}
+input{width:100%; padding:11px 12px; font-size:16px; border:1.5px solid var(--line); border-radius:9px; background:var(--bg); color:var(--ink); font-family:inherit;}
+input:focus{outline:none; border-color:var(--navy);}
+.row2{display:flex; gap:10px;} .row2>div{flex:1;}
+.btn{display:block; width:100%; padding:14px; margin-top:20px; font-size:17px; font-weight:700; font-family:inherit; color:#fff; background:var(--navy); border:none; border-radius:10px; cursor:pointer;}
+.btn:active{transform:translateY(1px);}
+.btn.ghost{background:transparent; color:var(--navy); border:1.5px solid var(--navy);}
+.note{font-size:12.5px; color:var(--sub); margin-top:12px; line-height:1.55;}
+.progress{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--sub); font-weight:700; margin-bottom:6px;}
+.bar{height:6px; background:var(--tint); border-radius:3px; overflow:hidden; margin-bottom:16px;}
+.bar>div{height:100%; background:var(--navy); border-radius:3px; transition:width .3s;}
+.qtext{font-size:17px; font-weight:700; line-height:1.55; margin-bottom:6px;}
+.diff{font-size:12px; color:var(--accent); font-weight:700; margin-bottom:12px;}
+.opt{display:block; width:100%; text-align:left; padding:12px 14px; margin-top:9px; font-size:15.5px; font-family:inherit; line-height:1.45; color:var(--ink); background:var(--bg); border:1.5px solid var(--line); border-radius:10px; cursor:pointer;}
+.opt:not(:disabled):hover{border-color:var(--navy);}
+.opt.correct{border-color:var(--ok); background:rgba(47,158,91,.12); font-weight:700;}
+.opt.wrong{border-color:var(--no); background:rgba(192,57,43,.10);}
+.opt:disabled{cursor:default; opacity:.92;}
+.explain{margin-top:14px; padding:14px 15px; border-left:4px solid var(--navy); background:var(--tint); border-radius:0 10px 10px 0; font-size:14px; line-height:1.6;}
+.explain .verdict{font-weight:900; font-size:15px;}
+.explain .verdict.ok{color:var(--ok);} .explain .verdict.no{color:var(--no);}
+.explain .basis{margin-top:8px; font-size:12.5px; color:var(--sub);}
+.donutbox{text-align:center; padding:10px 0 4px;}
+.donut{width:170px; height:170px; margin:0 auto; position:relative;}
+.donut svg{transform:rotate(-90deg);}
+.donut .num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+.donut .num b{font-size:38px; font-family:'Noto Serif KR',serif;}
+.donut .num span{font-size:12.5px; color:var(--sub);}
+.who{margin-top:12px; font-size:15px; font-weight:700;}
+.when{font-size:12.5px; color:var(--sub); margin-top:3px;}
+.msg{margin-top:10px; font-size:14.5px; line-height:1.5;}
+.review{margin-top:6px;}
+.rv{display:flex; gap:10px; padding:10px 2px; border-top:1px solid var(--line); font-size:13.5px; line-height:1.5;}
+.rv .mark{font-weight:900; flex:0 0 20px;}
+.rv .mark.ok{color:var(--ok);} .rv .mark.no{color:var(--no);}
+footer{margin-top:26px; text-align:center; font-size:12px; color:var(--sub); line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">건축법규 · 5주차 추가 문제</div>
+  <h1>건축 허가와 신고, 사용승인</h1>
+  <div class="sub">오늘 수업 범위(1-2-8 ~ 1-2-25) 응용 10문제 — 워크북을 풀고 나서 도전!<br>문제마다 바로 채점 + 해설 + 근거 조문</div>
+</header>
+
+<!-- 시작 -->
+<div id="scrStart" class="card">
+  <div style="font-size:15px; line-height:1.65;">건축(산업)기사 수준의 <b>오늘 강의 범위 응용문제</b> 10개입니다.<br>건축법의 적용 · 허가 · 신고 · 용도변경 · 가설건축물 · 착공 · 사용승인 — 교재 p.69~161을 옆에 두고 풀어보세요!</div>
+  <label>이름</label>
+  <input id="inName" placeholder="예: 홍길동" maxlength="20">
+  <div class="row2">
+    <div><label>학년 · 반</label><input id="inClass" placeholder="예: 2학년 화요일반" maxlength="20"></div>
+  </div>
+  <button class="btn" onclick="startQuiz()">시작하기</button>
+  <div class="note">이름은 결과 화면에 표시만 됩니다 · 건축과 김찬주 교수 · 『건축법규강의 2026』 연계</div>
+</div>
+
+<!-- 문항 -->
+<div id="scrQuiz" class="card hidden">
+  <div class="progress"><span id="pgLabel">문제 1 / 10</span><span id="pgScore"></span></div>
+  <div class="bar"><div id="pgBar" style="width:10%"></div></div>
+  <div id="qDiff" class="diff"></div>
+  <div id="qText" class="qtext"></div>
+  <div id="qOpts"></div>
+  <div id="qExplain" class="explain hidden"></div>
+  <button id="btnNext" class="btn hidden" onclick="nextQ()">다음 문제</button>
+</div>
+
+<!-- 결과 -->
+<div id="scrResult" class="card hidden">
+  <div class="donutbox">
+    <div class="donut">
+      <svg width="170" height="170" viewBox="0 0 170 170">
+        <circle cx="85" cy="85" r="72" fill="none" stroke="var(--tint)" stroke-width="16"/>
+        <circle id="donutArc" cx="85" cy="85" r="72" fill="none" stroke="var(--navy)" stroke-width="16" stroke-linecap="round" stroke-dasharray="0 999"/>
+      </svg>
+      <div class="num"><b id="rScore">0</b><span>/ 10 문제</span></div>
+    </div>
+    <div class="who" id="rName"></div>
+    <div class="when" id="rWhen"></div>
+    <div class="msg" id="rMsg"></div>
+  </div>
+  <div class="review" id="rReview"></div>
+  <button class="btn ghost" onclick="location.reload()">다시 풀기</button>
+</div>
+
+<footer>5주차 수업(1-4 건축법의 적용 ~ 2-12 건축물의 사용승인) 연계 추가 문제<br>근거 법령: 건축법 제3조 · 제11조 · 제14조 · 제19조 · 제20조 · 제21조 · 제22조</footer>
+</div>
+
+<script>
+const QUESTIONS = [
+ {d:"★", q:"다음 중 건축법을 적용하지 않는 건축물은?",
+  o:["「문화유산법」에 따른 지정문화유산","아파트","오피스텔","물류창고"], a:0,
+  e:"지정문화유산·임시지정문화유산, 철도·궤도의 선로 부지에 있는 시설, 고속도로 통행료 징수시설, 컨테이너를 이용한 간이창고(공장 안), 하천구역 내 수문조작실은 건축법을 적용하지 않는다.",
+  b:"건축법 제3조(적용 제외) — 교재 p.69~70"},
+ {d:"★★", q:"기존 건물 옥상에 바닥면적 30㎡의 창고를 증축하려 한다. 필요한 절차는?",
+  o:["건축신고","건축허가","건축물대장 기재 변경 신청","절차 불요"], a:0,
+  e:"바닥면적 합계 85㎡ 이내의 증축·개축·재축은 신고로 허가를 갈음한다(3층 이상 건축물은 연면적 1/10 이내 조건). 옥상 창고 30㎡ 증축은 신고 대상.",
+  b:"건축법 제14조 ①항 — 교재 p.124~129"},
+ {d:"★★", q:"특별시에 지상 25층, 연면적 합계 12만㎡의 건축물을 건축하려 한다. 허가권자는?",
+  o:["특별시장","구청장","국토교통부장관","도지사"], a:0,
+  e:"21층 이상이거나 연면적 합계 10만㎡ 이상인 건축물을 특별시·광역시에 건축하려면 특별시장·광역시장의 허가를 받아야 한다. 25층·12만㎡는 둘 다 해당.",
+  b:"건축법 제11조 ①항 단서 — 교재 p.100~101"},
+ {d:"★★", q:"건축허가를 받은 뒤 정당한 사유 없이 공사에 착수하지 않으면 허가가 취소될 수 있다. 그 기간은? (공장이 아닌 일반 건축물)",
+  o:["허가일부터 2년 이내 미착공","허가일부터 1년 이내 미착공","허가일부터 5년 이내 미착공","기간 제한 없음"], a:0,
+  e:"허가일부터 2년(공장은 3년) 이내에 착공하지 않으면 허가를 취소할 수 있다. 정당한 사유가 있으면 1년 범위에서 연장 가능 — 신고의 1년과 헷갈리지 말 것.",
+  b:"건축법 제11조 ⑦항 — 교재 p.118~119"},
+ {d:"★★", q:"건축신고를 한 사람이 신고일부터 일정 기간 내 공사에 착수하지 않으면 신고의 효력이 없어진다. 그 기간은?",
+  o:["1년","2년","6개월","3년"], a:0,
+  e:"신고일부터 1년 이내에 착수하지 않으면 신고의 효력은 없어진다(1년 범위 연장 가능). 허가 취소의 2년과 짝으로 출제되는 단골 숫자.",
+  b:"건축법 제14조 ⑤항 — 교재 p.124~129"},
+ {d:"★★★", q:"관리지역에서 연면적 180㎡, 지상 2층의 건축물을 건축하려 한다. 필요한 절차는?",
+  o:["건축신고","건축허가","도지사 승인 후 허가","개발행위허가만"], a:0,
+  e:"관리지역·농림지역·자연환경보전지역에서 연면적 200㎡ 미만 ∩ 3층 미만의 건축은 신고 대상(지구단위계획구역 등 제외). 180㎡·2층은 둘 다 충족.",
+  b:"건축법 제14조 ①항 — 교재 p.124~129"},
+ {d:"★★★", q:"제1종 근린생활시설(근린생활시설군)을 판매시설(영업시설군)로 용도변경하려 한다. 필요한 절차는?",
+  o:["허가","신고","건축물대장 기재 변경 신청","절차 불요"], a:0,
+  e:"9개 시설군에서 하위군 → 상위군으로 올라가면 허가, 내려가면 신고, 같은 군 안에서는 대장 기재 변경 신청. 근린생활(7번째) → 영업(5번째)은 상위로 올라가므로 허가.",
+  b:"건축법 제19조 — 교재 p.135~141"},
+ {d:"★★", q:"도시·군계획시설 예정지에 가설건축물을 건축하는 경우, 존치기간의 기준은?",
+  o:["3년 이내 (연장 가능)","1년 이내","5년 이내","10년 이내"], a:0,
+  e:"가설건축물은 3층 이하, 존치기간 3년 이내(연장 가능), 전기·수도·가스 등 새 간선 공급설비 설치 불요 등의 기준을 갖추어 허가를 받는다.",
+  b:"건축법 제20조 · 시행령 제15조 — 교재 p.142~151"},
+ {d:"★", q:"허가를 받은 건축물의 공사를 시작하기 전에 건축주가 허가권자에게 해야 하는 것은?",
+  o:["착공신고","사용승인 신청","안전영향평가","감리완료보고"], a:0,
+  e:"허가·신고 대상 건축물의 공사를 착수하려면 허가권자에게 착공신고를 해야 한다. 신고서에는 공사감리자·공사시공자가 함께 서명한다.",
+  b:"건축법 제21조 — 교재 p.152~155"},
+ {d:"★★", q:"건축물의 사용승인에 관한 설명으로 옳은 것은?",
+  o:["사용승인서를 받기 전에는 원칙적으로 건축물을 사용할 수 없다","완공 즉시 자유롭게 사용할 수 있다","사용승인은 공사시공자가 신청한다","임시사용승인 제도는 없다"], a:0,
+  e:"건축주가 감리완료보고서 등을 첨부해 사용승인을 신청하고, 허가권자는 7일 이내 현장검사 후 사용승인서를 발급한다. 발급 전 사용 불가 — 임시사용승인이 예외.",
+  b:"건축법 제22조 — 교재 p.156~161"},
+];
+// 보기 순서 섞기 (정답 위치 고정 방지)
+QUESTIONS.forEach(q=>{
+  const idx=[0,1,2,3].sort(()=>Math.random()-.5);
+  q.opts=idx.map(i=>q.o[i]); q.ans=idx.indexOf(q.a);
+});
+let cur=0, score=0, results=[], student={name:"",cls:""};
+function startQuiz(){
+  student.name=document.getElementById('inName').value.trim()||"이름 없음";
+  student.cls=document.getElementById('inClass').value.trim();
+  document.getElementById('scrStart').classList.add('hidden');
+  document.getElementById('scrQuiz').classList.remove('hidden');
+  showQ();
+}
+function showQ(){
+  const q=QUESTIONS[cur];
+  document.getElementById('pgLabel').textContent=`문제 ${cur+1} / ${QUESTIONS.length}`;
+  document.getElementById('pgScore').textContent=`맞힌 개수 ${score}`;
+  document.getElementById('pgBar').style.width=`${(cur)/QUESTIONS.length*100+10}%`;
+  document.getElementById('qDiff').textContent=`난이도 ${q.d}`;
+  document.getElementById('qText').textContent=`Q${cur+1}. ${q.q}`;
+  const box=document.getElementById('qOpts'); box.innerHTML='';
+  q.opts.forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=`${'①②③④'[i]} ${t}`;
+    b.onclick=()=>pick(i,b);
+    box.appendChild(b);
+  });
+  document.getElementById('qExplain').classList.add('hidden');
+  document.getElementById('btnNext').classList.add('hidden');
+}
+function pick(i,btn){
+  const q=QUESTIONS[cur];
+  const ok=(i===q.ans);
+  if(ok)score++;
+  results.push({q:q.q,ok});
+  document.querySelectorAll('#qOpts .opt').forEach((b,j)=>{
+    b.disabled=true;
+    if(j===q.ans)b.classList.add('correct');
+  });
+  if(!ok)btn.classList.add('wrong');
+  const ex=document.getElementById('qExplain');
+  ex.innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'정답입니다!':'아쉽네요 — 정답은 '+'①②③④'[q.ans]+'번'}</div>
+    <div style="margin-top:6px;">${q.e}</div><div class="basis">근거: ${q.b}</div>`;
+  ex.classList.remove('hidden');
+  const nb=document.getElementById('btnNext');
+  nb.textContent=(cur===QUESTIONS.length-1)?'결과 보기':'다음 문제';
+  nb.classList.remove('hidden');
+  document.getElementById('pgScore').textContent=`맞힌 개수 ${score}`;
+}
+function nextQ(){
+  if(cur<QUESTIONS.length-1){cur++;showQ();window.scrollTo(0,0);}
+  else showResult();
+}
+function showResult(){
+  document.getElementById('scrQuiz').classList.add('hidden');
+  document.getElementById('scrResult').classList.remove('hidden');
+  const pct=score/QUESTIONS.length;
+  const C=2*Math.PI*72;
+  document.getElementById('donutArc').setAttribute('stroke-dasharray',`${C*pct} ${C}`);
+  document.getElementById('rScore').textContent=score;
+  document.getElementById('rName').textContent=student.cls?`${student.cls} · ${student.name}`:student.name;
+  const n=new Date();
+  document.getElementById('rWhen').textContent=`완료 시각 ${n.getFullYear()}.${String(n.getMonth()+1).padStart(2,'0')}.${String(n.getDate()).padStart(2,'0')} ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+  document.getElementById('rMsg').textContent=
+    score>=9?"완벽해요! 오늘 배운 용어는 완전히 잡았습니다.":
+    score>=7?"좋아요! 틀린 문제의 근거 조문만 교재 p.22~43에서 다시 찾아보세요.":
+    score>=5?"절반 이상! 대수선 30㎡ · 3개, 특수구조 3m · 20m 숫자를 다시 확인하세요.":
+    "교재 p.69~161(건축법의 적용~사용승인)을 복습한 뒤 다시 도전해 보세요.";
+  const rv=document.getElementById('rReview');
+  rv.innerHTML=results.map((r,i)=>`<div class="rv"><span class="mark ${r.ok?'ok':'no'}">${r.ok?'O':'X'}</span><span>Q${i+1}. ${r.q}</span></div>`).join('');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
