@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>건축법규 6주차 추가 문제 — 설계·감리와 대지·도로</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1f4e79; --navy-deep:#163a5c; --accent:#c2703d; --ok:#2f9e5b; --no:#c0392b;
+  --bg:#f4f6f9; --card:#ffffff; --ink:#22303c; --sub:#5c6b7a; --line:#d9e0e8; --tint:#eaf1f7;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#101822; --card:#1a2532; --ink:#e8eef4; --sub:#9fb0c0; --line:#2c3a4a; --tint:#203042; --navy:#4d84b8; --navy-deep:#0e1926; }
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--ink); padding:0 16px; padding-block:0 40px; min-height:100vh;}
+.wrap{max-width:640px; margin:0 auto;}
+header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%); color:#fff; margin:0 -16px; padding:28px 20px 24px; text-align:center;}
+header .eyebrow{font-size:13px; letter-spacing:.14em; opacity:.85; font-weight:500;}
+header h1{font-family:'Noto Serif KR',serif; font-size:24px; font-weight:900; margin-top:8px;}
+header .sub{font-size:13.5px; opacity:.85; margin-top:8px; line-height:1.5;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 20px; margin-top:18px; box-shadow:0 1px 4px rgba(15,30,50,.06);}
+.hidden{display:none!important;}
+label{display:block; font-size:13px; font-weight:700; color:var(--sub); margin:14px 0 5px;}
+input{width:100%; padding:11px 12px; font-size:16px; border:1.5px solid var(--line); border-radius:9px; background:var(--bg); color:var(--ink); font-family:inherit;}
+input:focus{outline:none; border-color:var(--navy);}
+.row2{display:flex; gap:10px;} .row2>div{flex:1;}
+.btn{display:block; width:100%; padding:14px; margin-top:20px; font-size:17px; font-weight:700; font-family:inherit; color:#fff; background:var(--navy); border:none; border-radius:10px; cursor:pointer;}
+.btn:active{transform:translateY(1px);}
+.btn.ghost{background:transparent; color:var(--navy); border:1.5px solid var(--navy);}
+.note{font-size:12.5px; color:var(--sub); margin-top:12px; line-height:1.55;}
+.progress{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--sub); font-weight:700; margin-bottom:6px;}
+.bar{height:6px; background:var(--tint); border-radius:3px; overflow:hidden; margin-bottom:16px;}
+.bar>div{height:100%; background:var(--navy); border-radius:3px; transition:width .3s;}
+.qtext{font-size:17px; font-weight:700; line-height:1.55; margin-bottom:6px;}
+.diff{font-size:12px; color:var(--accent); font-weight:700; margin-bottom:12px;}
+.opt{display:block; width:100%; text-align:left; padding:12px 14px; margin-top:9px; font-size:15.5px; font-family:inherit; line-height:1.45; color:var(--ink); background:var(--bg); border:1.5px solid var(--line); border-radius:10px; cursor:pointer;}
+.opt:not(:disabled):hover{border-color:var(--navy);}
+.opt.correct{border-color:var(--ok); background:rgba(47,158,91,.12); font-weight:700;}
+.opt.wrong{border-color:var(--no); background:rgba(192,57,43,.10);}
+.opt:disabled{cursor:default; opacity:.92;}
+.explain{margin-top:14px; padding:14px 15px; border-left:4px solid var(--navy); background:var(--tint); border-radius:0 10px 10px 0; font-size:14px; line-height:1.6;}
+.explain .verdict{font-weight:900; font-size:15px;}
+.explain .verdict.ok{color:var(--ok);} .explain .verdict.no{color:var(--no);}
+.explain .basis{margin-top:8px; font-size:12.5px; color:var(--sub);}
+.donutbox{text-align:center; padding:10px 0 4px;}
+.donut{width:170px; height:170px; margin:0 auto; position:relative;}
+.donut svg{transform:rotate(-90deg);}
+.donut .num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+.donut .num b{font-size:38px; font-family:'Noto Serif KR',serif;}
+.donut .num span{font-size:12.5px; color:var(--sub);}
+.who{margin-top:12px; font-size:15px; font-weight:700;}
+.when{font-size:12.5px; color:var(--sub); margin-top:3px;}
+.msg{margin-top:10px; font-size:14.5px; line-height:1.5;}
+.review{margin-top:6px;}
+.rv{display:flex; gap:10px; padding:10px 2px; border-top:1px solid var(--line); font-size:13.5px; line-height:1.5;}
+.rv .mark{font-weight:900; flex:0 0 20px;}
+.rv .mark.ok{color:var(--ok);} .rv .mark.no{color:var(--no);}
+footer{margin-top:26px; text-align:center; font-size:12px; color:var(--sub); line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">건축법규 · 6주차 추가 문제</div>
+  <h1>설계·감리와 대지·도로</h1>
+  <div class="sub">오늘 수업 범위(2-13 설계 ~ 4-8 건축선) 응용 10문제 — 워크북을 풀고 나서 도전!<br>문제마다 바로 채점 + 해설 + 근거 조문</div>
+</header>
+
+<!-- 시작 -->
+<div id="scrStart" class="card">
+  <div style="font-size:15px; line-height:1.65;">건축(산업)기사 수준의 <b>오늘 강의 범위 응용문제</b> 10개입니다.<br>설계·감리 · 허용오차 · 해체와 멸실 · 대지의 안전 · 조경 · 공개공지 · 도로와 건축선 — 교재 p.162~228을 옆에 두고 풀어보세요!</div>
+  <label>이름</label>
+  <input id="inName" placeholder="예: 홍길동" maxlength="20">
+  <div class="row2">
+    <div><label>학년 · 반</label><input id="inClass" placeholder="예: 2학년 화요일반" maxlength="20"></div>
+  </div>
+  <button class="btn" onclick="startQuiz()">시작하기</button>
+  <div class="note">이름은 결과 화면에 표시만 됩니다 · 건축과 김찬주 교수 · 『건축법규강의 2026』 연계</div>
+</div>
+
+<!-- 문항 -->
+<div id="scrQuiz" class="card hidden">
+  <div class="progress"><span id="pgLabel">문제 1 / 10</span><span id="pgScore"></span></div>
+  <div class="bar"><div id="pgBar" style="width:10%"></div></div>
+  <div id="qDiff" class="diff"></div>
+  <div id="qText" class="qtext"></div>
+  <div id="qOpts"></div>
+  <div id="qExplain" class="explain hidden"></div>
+  <button id="btnNext" class="btn hidden" onclick="nextQ()">다음 문제</button>
+</div>
+
+<!-- 결과 -->
+<div id="scrResult" class="card hidden">
+  <div class="donutbox">
+    <div class="donut">
+      <svg width="170" height="170" viewBox="0 0 170 170">
+        <circle cx="85" cy="85" r="72" fill="none" stroke="var(--tint)" stroke-width="16"/>
+        <circle id="donutArc" cx="85" cy="85" r="72" fill="none" stroke="var(--navy)" stroke-width="16" stroke-linecap="round" stroke-dasharray="0 999"/>
+      </svg>
+      <div class="num"><b id="rScore">0</b><span>/ 10 문제</span></div>
+    </div>
+    <div class="who" id="rName"></div>
+    <div class="when" id="rWhen"></div>
+    <div class="msg" id="rMsg"></div>
+  </div>
+  <div class="review" id="rReview"></div>
+  <button class="btn ghost" onclick="location.reload()">다시 풀기</button>
+</div>
+
+<footer>6주차 수업(2-13 건축물의 설계 ~ 4-8 건축선에 따른 건축제한) 연계 추가 문제<br>근거 법령: 건축법 제25조 · 제26조 · 제40조 · 제42조 · 제43조 · 제44조 · 제46조 · 제47조 · 건축물관리법 제30조</footer>
+</div>
+
+<script>
+const QUESTIONS = [
+ {d:"★★", q:"대지에 높이 2m의 옹벽을 설치할 때, 옹벽에 두어야 하는 배수구멍(물빼기 구멍)의 기준은?",
+  o:["벽면적 3㎡마다 하나 이상","벽면적 10㎡마다 하나 이상","높이 1m마다 하나 이상","배수구멍은 필요 없다"], a:0,
+  e:"손궤 우려가 있는 토지에 대지를 조성하며 설치하는 옹벽에는 벽면적 3㎡마다 하나 이상의 배수구멍을 설치하고, 옹벽 윗가장자리로부터 안쪽 2m 이내의 지표수는 지상으로 또는 배수관으로 배수해야 한다.",
+  b:"건축법 제40조 · 피난·방화규칙 제25조 — 교재 p.205~208"},
+ {d:"★", q:"건축을 할 때 대지에 조경 등의 조치를 해야 하는 대지 면적 기준은?",
+  o:["면적 200㎡ 이상","면적 100㎡ 이상","연면적 300㎡ 이상","건축면적 200㎡ 이상"], a:0,
+  e:"면적 200㎡ 이상인 대지에 건축을 하는 건축주는 조례로 정하는 기준에 따라 대지에 조경 등의 조치를 해야 한다. '연면적'이 아니라 '대지 면적' 기준이라는 점이 함정.",
+  b:"건축법 제42조 — 교재 p.212~214"},
+ {d:"★★★", q:"건축물 옥상에 조경 90㎡를 설치했다. 대지의 조경면적으로 산정할 수 있는 면적은?",
+  o:["60㎡","90㎡","45㎡","30㎡"], a:0,
+  e:"옥상 조경면적의 3분의 2를 대지 조경면적으로 산정할 수 있다(90×2/3=60㎡). 단, 전체 의무 조경면적의 100분의 50을 초과할 수 없다.",
+  b:"건축법 시행령 제27조 ③항 — 교재 p.212~214"},
+ {d:"★★", q:"일반주거지역의 문화 및 집회시설이 공개공지(공개 공간)를 확보해야 하는 규모 기준은?",
+  o:["바닥면적 합계 5,000㎡ 이상","연면적 3,000㎡ 이상","바닥면적 합계 10,000㎡ 이상","대지면적 1,000㎡ 이상"], a:0,
+  e:"일반주거·준주거·상업·준공업지역에서 문화및집회·종교·판매·운수·업무·숙박시설로서 바닥면적 합계 5,000㎡ 이상이면 대지면적의 10% 이하 범위(조례)로 공개공지를 확보한다. 확보 시 용적률·높이제한 완화 혜택.",
+  b:"건축법 제43조 · 시행령 제27조의2 — 교재 p.215~218"},
+ {d:"★★★", q:"연면적 합계 2,000㎡인 공연장의 대지가 접해야 하는 도로의 조건은?",
+  o:["너비 6m 이상 도로에 4m 이상 접할 것","너비 4m 이상 도로에 2m 이상 접할 것","너비 8m 이상 도로에 6m 이상 접할 것","자동차전용도로에 2m 이상 접할 것"], a:0,
+  e:"대지는 원칙적으로 도로에 2m 이상 접해야 하지만, 연면적 합계 2,000㎡(공장은 3,000㎡) 이상인 건축물의 대지는 너비 6m 이상의 도로에 4m 이상 접해야 한다.",
+  b:"건축법 제44조 · 시행령 제28조 — 교재 p.219"},
+ {d:"★★", q:"양쪽에 대지가 있는 너비 3m의 도로(소요너비 미달)에서 건축선의 위치는?",
+  o:["도로 중심선에서 2m 물러난 선","도로 경계선","도로 중심선에서 3m 물러난 선","도로 반대쪽 경계선"], a:0,
+  e:"소요너비(4m)에 못 미치는 도로는 중심선으로부터 소요너비의 2분의 1(2m)을 물러난 선이 건축선이 된다. 반대쪽에 경사지·하천 등이 있으면 그 경계선에서 4m를 물러난 선.",
+  b:"건축법 제46조 ①항 — 교재 p.221~225"},
+ {d:"★★★", q:"교차각 90° 미만인 도로 모퉁이(두 도로 너비 각 6m)에 있는 대지의 가각전제(街角剪除) 기준은?",
+  o:["교차점에서 각 4m를 후퇴한 두 점을 연결한 선","교차점에서 각 2m를 후퇴한 두 점을 연결한 선","교차점에서 각 3m를 후퇴한 두 점을 연결한 선","가각전제 대상이 아니다"], a:0,
+  e:"너비 8m 미만인 도로의 모퉁이 건축선은 교차각과 도로 너비에 따라 2~4m를 후퇴한다. 교차각 90° 미만 ∩ 두 도로 모두 6m 이상 8m 미만이면 각 4m — 표에서 가장 큰 값.",
+  b:"건축법 시행령 제31조 ①항 — 교재 p.221~225"},
+ {d:"★★", q:"도로면으로부터 높이 4.5m 이하에 있는 창문에 적용되는 건축선 관련 제한은?",
+  o:["열고 닫을 때 건축선의 수직면을 넘지 않는 구조로 할 것","항상 닫아 둘 것","설치할 수 없다","방화유리만 사용할 것"], a:0,
+  e:"건축물과 담장은 건축선의 수직면을 넘으면 안 되고(지표 아래는 예외), 도로면으로부터 높이 4.5m 이하의 출입구·창문 등은 열고 닫을 때 건축선의 수직면을 넘지 않는 구조여야 한다.",
+  b:"건축법 제47조 — 교재 p.226~228"},
+ {d:"★★★", q:"건축 기준의 허용오차에서 '평면 길이'의 한도로 옳은 것은?",
+  o:["2% 이내 — 건축물 전체 1m, 각 실 10cm 초과 불가","3% 이내 — 제한 없음","0.5% 이내 — 각 실 30cm까지","5% 이내 — 건축물 전체 2m까지"], a:0,
+  e:"평면 길이의 허용오차는 2% 이내이되 건축물 전체 길이는 1m, 벽으로 구획된 각 실은 10cm를 초과할 수 없다. 높이도 2%(1m 초과 불가), 벽체·바닥판 두께는 3%.",
+  b:"건축법 제26조 · 규칙 [별표 5] — 교재 p.185"},
+ {d:"★★", q:"건축물이 재해로 멸실된 경우, 건축물대장 정리를 위한 멸실신고의 기한은?",
+  o:["멸실 후 30일 이내","멸실 후 7일 이내","멸실 후 1년 이내","신고 의무 없음"], a:0,
+  e:"건축물이 멸실된 날부터 30일 이내에 허가권자에게 멸실신고를 해야 한다. 해체는 원칙 허가(일부 신고) — 3장 유지와 관리 규정은 현재 「건축물관리법」으로 이관되어 운영된다.",
+  b:"건축물관리법 제30조·제34조 — 교재 p.197~198"},
+];
+// 보기 순서 섞기 (정답 위치 고정 방지)
+QUESTIONS.forEach(q=>{
+  const idx=[0,1,2,3].sort(()=>Math.random()-.5);
+  q.opts=idx.map(i=>q.o[i]); q.ans=idx.indexOf(q.a);
+});
+let cur=0, score=0, results=[], student={name:"",cls:""};
+function startQuiz(){
+  student.name=document.getElementById('inName').value.trim()||"이름 없음";
+  student.cls=document.getElementById('inClass').value.trim();
+  document.getElementById('scrStart').classList.add('hidden');
+  document.getElementById('scrQuiz').classList.remove('hidden');
+  showQ();
+}
+function showQ(){
+  const q=QUESTIONS[cur];
+  document.getElementById('pgLabel').textContent=`문제 ${cur+1} / ${QUESTIONS.length}`;
+  document.getElementById('pgScore').textContent=`맞힌 개수 ${score}`;
+  document.getElementById('pgBar').style.width=`${(cur)/QUESTIONS.length*100+10}%`;
+  document.getElementById('qDiff').textContent=`난이도 ${q.d}`;
+  document.getElementById('qText').textContent=`Q${cur+1}. ${q.q}`;
+  const box=document.getElementById('qOpts'); box.innerHTML='';
+  q.opts.forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=`${'①②③④'[i]} ${t}`;
+    b.onclick=()=>pick(i,b);
+    box.appendChild(b);
+  });
+  document.getElementById('qExplain').classList.add('hidden');
+  document.getElementById('btnNext').classList.add('hidden');
+}
+function pick(i,btn){
+  const q=QUESTIONS[cur];
+  const ok=(i===q.ans);
+  if(ok)score++;
+  results.push({q:q.q,ok});
+  document.querySelectorAll('#qOpts .opt').forEach((b,j)=>{
+    b.disabled=true;
+    if(j===q.ans)b.classList.add('correct');
+  });
+  if(!ok)btn.classList.add('wrong');
+  const ex=document.getElementById('qExplain');
+  ex.innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'정답입니다!':'아쉽네요 — 정답은 '+'①②③④'[q.ans]+'번'}</div>
+    <div style="margin-top:6px;">${q.e}</div><div class="basis">근거: ${q.b}</div>`;
+  ex.classList.remove('hidden');
+  const nb=document.getElementById('btnNext');
+  nb.textContent=(cur===QUESTIONS.length-1)?'결과 보기':'다음 문제';
+  nb.classList.remove('hidden');
+  document.getElementById('pgScore').textContent=`맞힌 개수 ${score}`;
+}
+function nextQ(){
+  if(cur<QUESTIONS.length-1){cur++;showQ();window.scrollTo(0,0);}
+  else showResult();
+}
+function showResult(){
+  document.getElementById('scrQuiz').classList.add('hidden');
+  document.getElementById('scrResult').classList.remove('hidden');
+  const pct=score/QUESTIONS.length;
+  const C=2*Math.PI*72;
+  document.getElementById('donutArc').setAttribute('stroke-dasharray',`${C*pct} ${C}`);
+  document.getElementById('rScore').textContent=score;
+  document.getElementById('rName').textContent=student.cls?`${student.cls} · ${student.name}`:student.name;
+  const n=new Date();
+  document.getElementById('rWhen').textContent=`완료 시각 ${n.getFullYear()}.${String(n.getMonth()+1).padStart(2,'0')}.${String(n.getDate()).padStart(2,'0')} ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+  document.getElementById('rMsg').textContent=
+    score>=9?"완벽해요! 오늘 배운 용어는 완전히 잡았습니다.":
+    score>=7?"좋아요! 틀린 문제의 근거 조문만 교재 p.22~43에서 다시 찾아보세요.":
+    score>=5?"절반 이상! 대수선 30㎡ · 3개, 특수구조 3m · 20m 숫자를 다시 확인하세요.":
+    "교재 p.69~161(건축법의 적용~사용승인)을 복습한 뒤 다시 도전해 보세요.";
+  const rv=document.getElementById('rReview');
+  rv.innerHTML=results.map((r,i)=>`<div class="rv"><span class="mark ${r.ok?'ok':'no'}">${r.ok?'O':'X'}</span><span>Q${i+1}. ${r.q}</span></div>`).join('');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
