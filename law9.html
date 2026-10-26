@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>건축법규 9주차 — 구조안전과 피난안전 10문제</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1f4e79; --navy-deep:#163a5c; --accent:#c2703d; --ok:#2f9e5b; --no:#c0392b;
+  --bg:#f4f6f9; --card:#ffffff; --ink:#22303c; --sub:#5c6b7a; --line:#d9e0e8; --tint:#eaf1f7;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#101822; --card:#1a2532; --ink:#e8eef4; --sub:#9fb0c0; --line:#2c3a4a; --tint:#203042; --navy:#4d84b8; --navy-deep:#0e1926; }
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--ink); padding:0 16px; padding-block:0 40px; min-height:100vh;}
+.wrap{max-width:640px; margin:0 auto;}
+header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%); color:#fff; margin:0 -16px; padding:28px 20px 24px; text-align:center;}
+header .eyebrow{font-size:13px; letter-spacing:.14em; opacity:.85; font-weight:500;}
+header h1{font-family:'Noto Serif KR',serif; font-size:24px; font-weight:900; margin-top:8px;}
+header .sub{font-size:13.5px; opacity:.85; margin-top:8px; line-height:1.5;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 20px; margin-top:18px; box-shadow:0 1px 4px rgba(15,30,50,.06);}
+.hidden{display:none!important;}
+label{display:block; font-size:13px; font-weight:700; color:var(--sub); margin:14px 0 5px;}
+input{width:100%; padding:11px 12px; font-size:16px; border:1.5px solid var(--line); border-radius:9px; background:var(--bg); color:var(--ink); font-family:inherit;}
+input:focus{outline:none; border-color:var(--navy);}
+.row2{display:flex; gap:10px;} .row2>div{flex:1;}
+.btn{display:block; width:100%; padding:14px; margin-top:20px; font-size:17px; font-weight:700; font-family:inherit; color:#fff; background:var(--navy); border:none; border-radius:10px; cursor:pointer;}
+.btn:active{transform:translateY(1px);}
+.btn.ghost{background:transparent; color:var(--navy); border:1.5px solid var(--navy);}
+.note{font-size:12.5px; color:var(--sub); margin-top:12px; line-height:1.55;}
+.progress{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--sub); font-weight:700; margin-bottom:6px;}
+.bar{height:6px; background:var(--tint); border-radius:3px; overflow:hidden; margin-bottom:16px;}
+.bar>div{height:100%; background:var(--navy); border-radius:3px; transition:width .3s;}
+.qtext{font-size:17px; font-weight:700; line-height:1.55; margin-bottom:6px;}
+.diff{font-size:12px; color:var(--accent); font-weight:700; margin-bottom:12px;}
+.opt{display:block; width:100%; text-align:left; padding:12px 14px; margin-top:9px; font-size:15.5px; font-family:inherit; line-height:1.45; color:var(--ink); background:var(--bg); border:1.5px solid var(--line); border-radius:10px; cursor:pointer;}
+.opt:not(:disabled):hover{border-color:var(--navy);}
+.opt.correct{border-color:var(--ok); background:rgba(47,158,91,.12); font-weight:700;}
+.opt.wrong{border-color:var(--no); background:rgba(192,57,43,.10);}
+.opt:disabled{cursor:default; opacity:.92;}
+.explain{margin-top:14px; padding:14px 15px; border-left:4px solid var(--navy); background:var(--tint); border-radius:0 10px 10px 0; font-size:14px; line-height:1.6;}
+.explain .verdict{font-weight:900; font-size:15px;}
+.explain .verdict.ok{color:var(--ok);} .explain .verdict.no{color:var(--no);}
+.explain .basis{margin-top:8px; font-size:12.5px; color:var(--sub);}
+.donutbox{text-align:center; padding:10px 0 4px;}
+.donut{width:170px; height:170px; margin:0 auto; position:relative;}
+.donut svg{transform:rotate(-90deg);}
+.donut .num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+.donut .num b{font-size:38px; font-family:'Noto Serif KR',serif;}
+.donut .num span{font-size:12.5px; color:var(--sub);}
+.who{margin-top:12px; font-size:15px; font-weight:700;}
+.when{font-size:12.5px; color:var(--sub); margin-top:3px;}
+.msg{margin-top:10px; font-size:14.5px; line-height:1.5;}
+.review{margin-top:6px;}
+.rv{display:flex; gap:10px; padding:10px 2px; border-top:1px solid var(--line); font-size:13.5px; line-height:1.5;}
+.rv .mark{font-weight:900; flex:0 0 20px;}
+.rv .mark.ok{color:var(--ok);} .rv .mark.no{color:var(--no);}
+footer{margin-top:26px; text-align:center; font-size:12px; color:var(--sub); line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">건축법규 · 9주차</div>
+  <h1>구조안전과 피난안전 10문제</h1>
+  <div class="sub">교재 5장 5-1 ~ 5-2-12 (p.229 ~ 280) — 계산 문제 2개 포함<br>문제마다 바로 채점 + 해설 + 근거 조문</div>
+</header>
+
+<!-- 시작 -->
+<div id="scrStart" class="card">
+  <div style="font-size:15px; line-height:1.65;">건축(산업)기사 수준의 <b>오늘 강의 범위 응용문제</b> 10개입니다.<br>구조안전 확인 · 내진능력 공개 · 구조기술사 협력 · 피난안전구역 · 옥상 난간 · 방화구획 · 아파트 대피공간 — 워크북 CH07과 겹치지 않게 냈습니다.</div>
+  <label>이름</label>
+  <input id="inName" placeholder="예: 홍길동" maxlength="20">
+  <div class="row2">
+    <div><label>학년 · 반</label><input id="inClass" placeholder="예: 2학년 화요일반" maxlength="20"></div>
+  </div>
+  <button class="btn" onclick="startQuiz()">시작하기</button>
+  <div class="note">이름은 결과 화면에 표시만 됩니다 · 건축과 김찬주 교수 · 『건축법규강의 2026』 연계</div>
+</div>
+
+<!-- 문항 -->
+<div id="scrQuiz" class="card hidden">
+  <div class="progress"><span id="pgLabel">문제 1 / 10</span><span id="pgScore"></span></div>
+  <div class="bar"><div id="pgBar" style="width:10%"></div></div>
+  <div id="qDiff" class="diff"></div>
+  <div id="qText" class="qtext"></div>
+  <div id="qOpts"></div>
+  <div id="qExplain" class="explain hidden"></div>
+  <button id="btnNext" class="btn hidden" onclick="nextQ()">다음 문제</button>
+</div>
+
+<!-- 결과 -->
+<div id="scrResult" class="card hidden">
+  <div class="donutbox">
+    <div class="donut">
+      <svg width="170" height="170" viewBox="0 0 170 170">
+        <circle cx="85" cy="85" r="72" fill="none" stroke="var(--tint)" stroke-width="16"/>
+        <circle id="donutArc" cx="85" cy="85" r="72" fill="none" stroke="var(--navy)" stroke-width="16" stroke-linecap="round" stroke-dasharray="0 999"/>
+      </svg>
+      <div class="num"><b id="rScore">0</b><span>/ 10 문제</span></div>
+    </div>
+    <div class="who" id="rName"></div>
+    <div class="when" id="rWhen"></div>
+    <div class="msg" id="rMsg"></div>
+  </div>
+  <div class="review" id="rReview"></div>
+  <button class="btn ghost" onclick="location.reload()">다시 풀기</button>
+</div>
+
+<footer>9주차 수업(구조안전과 피난안전) 연계 — 범위: 교재 5장 p.229 ~ 280 · 원격 9강<br>근거 법령: 건축법 제48조 · 제48조의3 · 시행령 제32조 · 제34조 · 제40조 · 제46조 · 제91조의3 · 피난·방화구조규칙 제14조</footer>
+</div>
+
+<script>
+const QUESTIONS = [
+ {d:"★", q:"착공신고 때 구조안전 확인 서류를 허가권자에게 제출해야 하는 건축물이 아닌 것은?",
+  o:["연면적 250㎡인 단층 창고","층수가 2층인 근린생활시설","높이가 13m인 건축물","처마높이가 9m인 건축물"], a:0,
+  e:"제출 대상은 2층 이상 · 연면적 200㎡ 이상(창고·축사·작물 재배사 제외) · 높이 13m · 처마 9m · 기둥 간격 10m 이상 등. 단층 창고는 200㎡를 넘어도 '창고 제외' 단서로 빠진다.",
+  b:"건축법 시행령 제32조 ②항 — 교재 p.229~231"},
+ {d:"★", q:"주요구조부가 내화구조 또는 불연재료인 건축물로서 연면적이 얼마를 넘으면 방화구획을 해야 하는가?",
+  o:["1,000㎡","500㎡","2,000㎡","3,000㎡"], a:0,
+  e:"연면적 1,000㎡를 넘는 건축물은 내화구조의 바닥·벽과 60분+·60분 방화문(또는 자동방화셔터)으로 구획한다.",
+  b:"건축법 시행령 제46조 ①항 — 교재 p.274~280"},
+ {d:"★★", q:"건축물의 내진능력은 언제 공개해야 하는가?",
+  o:["사용승인을 받는 즉시","착공신고를 하는 때","건축허가를 신청하는 때","사용승인 후 1년 이내"], a:0,
+  e:"2층(목구조 3층) 이상 또는 연면적 200㎡(목구조 500㎡) 이상 등을 건축하려는 자는 사용승인을 받는 즉시 내진능력을 공개한다. 구조안전 확인 서류 제출(착공신고 때)과 시점을 혼동하지 말 것.",
+  b:"건축법 제48조의3 — 교재 p.229~234"},
+ {d:"★★", q:"설계자가 구조안전을 확인할 때 건축구조기술사의 협력을 받아야 하는 건축물이 아닌 것은?",
+  o:["5층 업무시설(연면적 3,000㎡)","6층 이상인 건축물","3층 이상의 필로티형식 건축물","준다중이용 건축물"], a:0,
+  e:"협력 대상은 6층 이상 · 특수구조 · 다중이용 · 준다중이용 · 3층 이상 필로티형식 · 지진구역 안 중요 건축물(국토부령). 5층 업무시설은 층수·용도 모두 해당하지 않는다.",
+  b:"건축법 시행령 제91조의3 ①항 — 교재 p.235~239"},
+ {d:"★★", q:"깊이 10m 이상의 토지 굴착공사를 수반하는 건축물의 설계자가 협력을 받아야 하는 관계전문기술자는?",
+  o:["토목 분야 기술사(토질및기초 등)","건축구조기술사","건축기계설비기술사","건축전기설비기술사"], a:0,
+  e:"깊이 10m 이상 토지 굴착 또는 높이 5m 이상 옹벽 공사 → 토목 분야 기술사 또는 지질및지반기술사의 협력(지질조사·토공사·흙막이 설계).",
+  b:"건축법 시행령 제91조의3 ③항 — 교재 p.235~239"},
+ {d:"★★", q:"초고층 건축물에 피난안전구역을 설치하는 간격으로 옳은 것은?",
+  o:["지상층으로부터 최대 30개 층마다 1개소 이상","지상층으로부터 최대 20개 층마다 1개소 이상","지상층으로부터 최대 25개 층마다 1개소 이상","전체 층수의 2분의 1 층에 1개소"], a:0,
+  e:"초고층(50층 이상 또는 200m 이상)은 최대 30개 층마다 1개소 이상. '전체 층수 ½ 층 상하 5개 층'은 준초고층 기준이다.",
+  b:"건축법 시행령 제34조 ③항 — 교재 p.242~249"},
+ {d:"★★★", q:"[계산] 지상 40층 준초고층 건축물에 피난안전구역을 둘 수 있는 층의 범위는?",
+  o:["15층 ~ 25층","20층만 가능","10층 ~ 30층","17층 ~ 23층"], a:0,
+  e:"준초고층은 전체 층수의 2분의 1에 해당하는 층(40÷2 = 20층)으로부터 상하 5개 층 이내 → 15층 ~ 25층 중 1개소 이상.",
+  b:"건축법 시행령 제34조 ④항 — 교재 p.242~249"},
+ {d:"★", q:"옥상광장 또는 2층 이상인 층의 노대 주위에 설치하는 난간의 높이 기준은?",
+  o:["1.2m 이상","1.0m 이상","1.1m 이상","1.5m 이상"], a:0,
+  e:"옥상광장·2층 이상 노대(발코니) 등의 주위에는 높이 1.2m 이상의 난간을 설치한다(출입할 수 없는 구조는 제외).",
+  b:"건축법 시행령 제40조 ①항 — 교재 p.267"},
+ {d:"★★★", q:"[계산] 11층 이상인 층(실내 마감은 불연재료가 아님)에 스프링클러를 설치했다. 방화구획 면적 기준은?",
+  o:["600㎡ 이내마다","200㎡ 이내마다","1,500㎡ 이내마다","3,000㎡ 이내마다"], a:0,
+  e:"11층 이상 = 200㎡마다(불연재료 마감이면 500㎡). 스프링클러 등 자동식 소화설비를 설치하면 3배 → 200 × 3 = 600㎡. 1,500㎡는 불연재료 마감일 때.",
+  b:"피난·방화구조 등의 기준에 관한 규칙 제14조 ①항 — 교재 p.274~280"},
+ {d:"★★", q:"아파트 4층 이상 층의 발코니에 세대별로 대피공간을 설치하는 경우 바닥면적 기준은?",
+  o:["2㎡ 이상","3㎡ 이상","1.5㎡ 이상","4㎡ 이상"], a:0,
+  e:"인접 세대와 공동 설치 = 3㎡ 이상, 세대별 설치 = 2㎡ 이상. 바깥 공기와 접하고, 실내 다른 부분과 방화구획해야 한다.",
+  b:"건축법 시행령 제46조 ④항 — 교재 p.274~280"},
+];
+// 보기 순서 섞기 (정답 위치 고정 방지)
+QUESTIONS.forEach(q=>{
+  const idx=[0,1,2,3].sort(()=>Math.random()-.5);
+  q.opts=idx.map(i=>q.o[i]); q.ans=idx.indexOf(q.a);
+});
+let cur=0, score=0, results=[], student={name:"",cls:""};
+function startQuiz(){
+  student.name=document.getElementById('inName').value.trim()||"이름 없음";
+  student.cls=document.getElementById('inClass').value.trim();
+  document.getElementById('scrStart').classList.add('hidden');
+  document.getElementById('scrQuiz').classList.remove('hidden');
+  showQ();
+}
+function showQ(){
+  const q=QUESTIONS[cur];
+  document.getElementById('pgLabel').textContent=`문제 ${cur+1} / ${QUESTIONS.length}`;
+  document.getElementById('pgScore').textContent=`맞힌 개수 ${score}`;
+  document.getElementById('pgBar').style.width=`${(cur)/QUESTIONS.length*100+10}%`;
+  document.getElementById('qDiff').textContent=`난이도 ${q.d}`;
+  document.getElementById('qText').textContent=`Q${cur+1}. ${q.q}`;
+  const box=document.getElementById('qOpts'); box.innerHTML='';
+  q.opts.forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=`${'①②③④'[i]} ${t}`;
+    b.onclick=()=>pick(i,b);
+    box.appendChild(b);
+  });
+  document.getElementById('qExplain').classList.add('hidden');
+  document.getElementById('btnNext').classList.add('hidden');
+}
+function pick(i,btn){
+  const q=QUESTIONS[cur];
+  const ok=(i===q.ans);
+  if(ok)score++;
+  results.push({q:q.q,ok});
+  document.querySelectorAll('#qOpts .opt').forEach((b,j)=>{
+    b.disabled=true;
+    if(j===q.ans)b.classList.add('correct');
+  });
+  if(!ok)btn.classList.add('wrong');
+  const ex=document.getElementById('qExplain');
+  ex.innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'정답입니다!':'아쉽네요 — 정답은 '+'①②③④'[q.ans]+'번'}</div>
+    <div style="margin-top:6px;">${q.e}</div><div class="basis">근거: ${q.b}</div>`;
+  ex.classList.remove('hidden');
+  const nb=document.getElementById('btnNext');
+  nb.textContent=(cur===QUESTIONS.length-1)?'결과 보기':'다음 문제';
+  nb.classList.remove('hidden');
+  document.getElementById('pgScore').textContent=`맞힌 개수 ${score}`;
+}
+function nextQ(){
+  if(cur<QUESTIONS.length-1){cur++;showQ();window.scrollTo(0,0);}
+  else showResult();
+}
+function showResult(){
+  document.getElementById('scrQuiz').classList.add('hidden');
+  document.getElementById('scrResult').classList.remove('hidden');
+  const pct=score/QUESTIONS.length;
+  const C=2*Math.PI*72;
+  document.getElementById('donutArc').setAttribute('stroke-dasharray',`${C*pct} ${C}`);
+  document.getElementById('rScore').textContent=score;
+  document.getElementById('rName').textContent=student.cls?`${student.cls} · ${student.name}`:student.name;
+  const n=new Date();
+  document.getElementById('rWhen').textContent=`완료 시각 ${n.getFullYear()}.${String(n.getMonth()+1).padStart(2,'0')}.${String(n.getDate()).padStart(2,'0')} ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+  document.getElementById('rMsg').textContent=
+    score>=9?"완벽해요! 오늘 배운 용어는 완전히 잡았습니다.":
+    score>=7?"좋아요! 틀린 문제의 근거 조문만 교재 p.22~43에서 다시 찾아보세요.":
+    score>=5?"절반 이상! 대수선 30㎡ · 3개, 특수구조 3m · 20m 숫자를 다시 확인하세요.":
+    "교재 p.69~161(건축법의 적용~사용승인)을 복습한 뒤 다시 도전해 보세요.";
+  const rv=document.getElementById('rReview');
+  rv.innerHTML=results.map((r,i)=>`<div class="rv"><span class="mark ${r.ok?'ok':'no'}">${r.ok?'O':'X'}</span><span>Q${i+1}. ${r.q}</span></div>`).join('');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
