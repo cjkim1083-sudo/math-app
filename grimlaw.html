@@ -201,15 +201,21 @@ function showResult(){
   document.getElementById('rReview').innerHTML = results.map((r,i)=>
     `<div class="rv"><span class="mark ${r.ok?'ok':'no'}">${r.ok?'O':'X'}</span><span>${i+1}. ${r.q.u}</span>${r.ok?'':`<span class="p">개념도 p.${r.q.f}</span>`}</div>`).join('');
   const pages = wrong.map(r=>'p.'+r.q.f).join(' · ');
-  const buy = BUY_URL ? `<a class="btn warm" href="${BUY_URL}" target="_blank" rel="noopener">『그림으로 푸는 건축법규』 보러 가기</a>`
+  const buy = BUY_URL ? `<a class="btn warm" href="${BUY_URL}" target="_blank" rel="noopener">틀린 문항 그림 보기 · 9,900원</a><p style="margin-top:8px;font-size:12.5px">전자책 · 결제 후 바로 열람</p>`
                       : `<p style="margin-top:8px"><b style="display:inline;font-size:14px">유페이퍼</b>에서 「그림으로 푸는 건축법규」를 검색하세요.</p>`;
   document.getElementById('rCta').innerHTML = (wrong.length
       ? `<b>틀린 ${wrong.length}문항, 그림으로 다시 보기</b><p>${pages}</p>`
       : `<b>전부 맞혔다</b><p>다른 챕터도 이어서 풀어 보자.</p>`)
-    + `<p style="margin-top:8px">숫자가 왜 그 숫자인지 — 문항마다 개념도 한 장이 붙은 책, 245쪽 · 개념도 113장</p>` + buy;
+    + `<p style="margin-top:8px">문항마다 개념도 한 장 · 245쪽 · 개념도 113장<br>『건축법규강의』 13년 개정 저자의 책</p>` + buy;
   window.scrollTo(0,0);
 }
 drawGrid();
+(function(){ try{
+  const P=new URLSearchParams(location.search);
+  if(P.has('mock')){ startMock(); return; }
+  const ch=(P.get('ch')||'').padStart(2,'0');
+  if(P.get('ch') && CHAP.some(c=>c.no===ch)) startCh(ch);
+}catch(e){} })();
 </script>
 </body>
 </html>
